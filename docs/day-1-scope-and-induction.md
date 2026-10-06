@@ -64,23 +64,23 @@ A **tactic** describes why an adversary performs an action, while a **technique*
 
 The Enterprise ATT&CK framework includes the following tactics:
 
-| Tactic | Main purpose |
+| Tactic | Purpose |
 |---|---|
-| Initial Access | How an adversary gets into a system |
-| Execution | How an adversary runs code or commands |
+| Reconnaissance | How an adversary gathers information to plan future operations |
+| Resource Development | How an adversary establishes resources to support operations |
+| Initial Access | How an adversary gets into a network |
+| Execution | How an adversary runs malicious code |
 | Persistence | How an adversary maintains access |
-| Privilege Escalation | How an adversary gains higher permissions |
-| Stealth | How an adversary avoids being detected |
-| Defense Impairment | How an adversary weakens security controls |
-| Credential Access | How an adversary obtains credentials |
+| Privilege Escalation | How an adversary gains higher-level permissions |
+| Stealth | How an adversary hides or conceals their actions |
+| Defense Impairment | How an adversary weakens security mechanisms and tools |
+| Credential Access | How an adversary obtains account names and passwords |
 | Discovery | How an adversary learns about the environment |
 | Lateral Movement | How an adversary moves through the environment |
-| Collection | How an adversary gathers information |
+| Collection | How an adversary gathers data of interest |
 | Command and Control | How an adversary communicates with compromised systems |
-| Exfiltration | How an adversary removes data |
-| Impact | How an adversary affects systems or data |
-| Reconnaissance | How an adversary gathers information before an attack |
-| Resource Development | How an adversary prepares resources for an attack |
+| Exfiltration | How an adversary steals or removes data |
+| Impact | How an adversary affects, interrupts, or destroys systems and data |
 
 For this project, MITRE ATT&CK will be used to organise adversary behaviours into repeatable test cases. The specific techniques will be selected later based on the project scope, laboratory environment, and supervisor guidance.
 
