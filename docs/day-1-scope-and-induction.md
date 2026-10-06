@@ -1,0 +1,81 @@
+# Day 1 – Scope and Induction
+
+## 1. Project Scope
+
+This project will investigate and develop an automated adversary-testing
+approach within an isolated and authorised laboratory environment.
+
+The project will explore how adversary behaviours can be represented as
+repeatable test cases and mapped to the MITRE ATT&CK framework.
+
+The project will investigate automated adversary emulation, software and
+protocol testing, and the use of AI and LLMs for generating test cases.
+
+The final scope will be confirmed and adjusted based on supervisor
+feedback, available infrastructure and technical feasibility.
+
+## 2. Proposed Target Set
+
+The proposed target environment includes:
+
+- Windows target
+- Ubuntu server
+- OWASP Juice Shop
+- One small C/C++ library
+
+The final target configuration will be confirmed with the supervisor.
+
+## 3. Out of Scope
+
+The following activities are outside the project scope:
+
+- Testing campus networks
+- Testing public systems
+- Testing third-party systems
+- Testing personal systems
+- Testing unauthorised systems
+- Testing outside the authorised laboratory
+- Using live malware
+- Using real personal data
+
+## 4. Rules of Engagement
+
+Testing will only be conducted within the authorised and isolated
+laboratory environment.
+
+The final rules of engagement and acceptable-use requirements will be
+confirmed with the supervisor before adversary emulation or security
+testing begins.
+
+## 5. Escalation Contact
+
+**Supervisor:** Dr Ahsan
+
+Any unexpected security, infrastructure or scope issue will be reported
+to the supervisor before proceeding.
+
+## 6. MITRE ATT&CK – Initial Understanding
+
+MITRE ATT&CK will be used to represent and organise adversary behaviours
+as test cases.
+
+The project plan proposes selecting 12 techniques across at least
+6 ATT&CK tactics.
+
+The techniques will be selected later based on their relevance to the
+project and their ability to be safely reproduced within the isolated
+laboratory environment.
+
+## 7. Questions for Supervisor
+
+1. Will I use a university hypervisor or build the laboratory locally?
+2. With my 16 GB laptop, should the Windows environment be reduced to
+   one target?
+3. Which lab-as-code approach should I use: Terraform or Vagrant?
+4. Will Deakin provide the isolated network environment and required
+   IT approval?
+5. Will the GitHub repository and self-hosted runner be provided?
+6. Which tools from the proposed tool stack should I prioritise?
+7. Which topics or tools should be adjusted based on the available time
+   and technical difficulty?
+8. Can we confirm the final project scope and target environment?
