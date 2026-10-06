@@ -56,15 +56,20 @@ to the supervisor before proceeding.
 
 ## 6. MITRE ATT&CK – Initial Understanding
 
-MITRE ATT&CK will be used to represent and organise adversary behaviours
-as test cases.
+MITRE ATT&CK is used to represent and organise adversary behaviours.
+
+A tactic represents the adversary's objective or goal, while a technique
+represents a method or behaviour used to achieve that objective.
+
+For this project, MITRE ATT&CK will be used to help organise adversary
+behaviours into repeatable test cases. The selected techniques can then
+be used as a basis for automated testing and evaluation within the
+isolated laboratory environment.
 
 The project plan proposes selecting 12 techniques across at least
-6 ATT&CK tactics.
-
-The techniques will be selected later based on their relevance to the
-project and their ability to be safely reproduced within the isolated
-laboratory environment.
+6 ATT&CK tactics. The specific techniques will be selected later based
+on their relevance to the project and their ability to be safely
+reproduced within the authorised laboratory environment.
 
 ## 7. Questions for Supervisor
 
