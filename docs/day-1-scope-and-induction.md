@@ -29,14 +29,16 @@ The final target configuration will be confirmed with the supervisor.
 
 The following activities are outside the project scope:
 
-- Testing campus networks
+- Testing campus networks or infrastructure
 - Testing public systems
 - Testing third-party systems
-- Testing personal systems
+- Testing cloud accounts or external environments
+- Testing personal or home networks
 - Testing unauthorised systems
 - Testing outside the authorised laboratory
 - Using live malware
 - Using real personal data
+- Using real personal information or accounts
 
 ## 4. Rules of Engagement
 
@@ -75,13 +77,27 @@ reproduced within the authorised laboratory environment.
 ## 7. Questions for Supervisor
 
 1. Will I use a university hypervisor or build the laboratory locally?
+
 2. With my 16 GB laptop, should the Windows environment be reduced to
    one target?
+
 3. Which lab-as-code approach should I use: Terraform or Vagrant?
-4. Will Deakin provide the isolated network environment and required
-   IT approval?
-5. Will the GitHub repository and self-hosted runner be provided?
-6. Which tools from the proposed tool stack should I prioritise?
-7. Which topics or tools should be adjusted based on the available time
-   and technical difficulty?
-8. Can we confirm the final project scope and target environment?
+
+4. Will Deakin provide the isolated network environment and the required
+   written IT approval?
+
+5. Will the Windows evaluation ISOs and other target environments be
+   provided, or do I need to obtain them myself?
+
+6. Should I continue using the private GitHub repository I created, or
+   will a Deakin GitHub organisation and self-hosted runner be provided?
+
+7. Will an LLM API key be provided, and what spending cap should be used?
+
+8. What rules of engagement and student acceptable-use requirements do I
+   need to complete before testing begins?
+
+9. Which tools from the proposed tool stack should I prioritise, and
+   which can be adjusted if they are too difficult or time-consuming?
+
+10. Can we confirm the final project scope and target environment?
