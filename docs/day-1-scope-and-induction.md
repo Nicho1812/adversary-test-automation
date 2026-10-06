@@ -56,7 +56,8 @@ to the supervisor before proceeding.
 
 ## 6. MITRE ATT&CK – Initial Understanding
 
-MITRE ATT&CK is used to represent and organise adversary behaviours.
+MITRE ATT&CK is a framework used to represent and organise adversary
+behaviours.
 
 A tactic represents the adversary's objective or goal, while a technique
 represents a method or behaviour used to achieve that objective.
