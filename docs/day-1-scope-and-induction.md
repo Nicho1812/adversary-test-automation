@@ -56,23 +56,38 @@ testing begins.
 Any unexpected security, infrastructure or scope issue will be reported
 to the supervisor before proceeding.
 
-## 6. MITRE ATT&CK – Initial Understanding
+## 6. MITRE ATT&CK – Basic Understanding
 
-MITRE ATT&CK is a framework used to represent and organise adversary
-behaviours.
+MITRE ATT&CK is a framework used to organise and describe adversary behaviour.
 
-A tactic represents the adversary's objective or goal, while a technique
-represents a method or behaviour used to achieve that objective.
+A **tactic** describes why an adversary performs an action, while a **technique** describes how the action is performed.
 
-For this project, MITRE ATT&CK will be used to help organise adversary
-behaviours into repeatable test cases. The selected techniques can then
-be used as a basis for automated testing and evaluation within the
-isolated laboratory environment.
+The Enterprise ATT&CK framework includes the following tactics:
 
-The project plan proposes selecting 12 techniques across at least
-6 ATT&CK tactics. The specific techniques will be selected later based
-on their relevance to the project and their ability to be safely
-reproduced within the authorised laboratory environment.
+| Tactic | Main purpose |
+|---|---|
+| Initial Access | How an adversary gets into a system |
+| Execution | How an adversary runs code or commands |
+| Persistence | How an adversary maintains access |
+| Privilege Escalation | How an adversary gains higher permissions |
+| Stealth | How an adversary avoids being detected |
+| Defense Impairment | How an adversary weakens security controls |
+| Credential Access | How an adversary obtains credentials |
+| Discovery | How an adversary learns about the environment |
+| Lateral Movement | How an adversary moves through the environment |
+| Collection | How an adversary gathers information |
+| Command and Control | How an adversary communicates with compromised systems |
+| Exfiltration | How an adversary removes data |
+| Impact | How an adversary affects systems or data |
+| Reconnaissance | How an adversary gathers information before an attack |
+| Resource Development | How an adversary prepares resources for an attack |
+
+For this project, MITRE ATT&CK will be used to organise adversary behaviours into repeatable test cases. The specific techniques will be selected later based on the project scope, laboratory environment, and supervisor guidance.
+
+### References
+
+- MITRE ATT&CK – Enterprise Tactics: https://attack.mitre.org/tactics/enterprise/
+- MITRE ATT&CK – Enterprise Techniques: https://attack.mitre.org/techniques/enterprise/
 
 ## 7. Questions for Supervisor
 
