@@ -1,133 +1,39 @@
 # Lab and Tool Setup Checklist
 
-## 1. Host
-
-### Priority
-- [ ] Windows cloud VM available
-- [ ] Confirm VM access and resources
-
-### If time/resources allow
-- [ ] Confirm additional virtualisation options
-
----
-
-## 2. Lab as Code
-
-### Priority
-- [ ] Set up Vagrant
-- [ ] Confirm Vagrant works with the available environment
-
----
-
-## 3. Targets
-
-### Priority
-- [ ] Set up one Windows target
-- [ ] Set up Ubuntu target if available
-
-### If time/resources allow
-- [ ] Set up OWASP Juice Shop
-- [ ] Set up C/C++ target
-
----
-
-## 4. Network
-
-### Priority
-- [ ] Confirm isolated network
-- [ ] Confirm IT approval
-
----
-
-## 5. Telemetry
-
-### Priority
-- [ ] Set up Sysmon
-- [ ] Set up auditd if Ubuntu is used
-- [ ] Set up Elastic or Wazuh
-- [ ] Confirm telemetry is working
-
-### If time/resources allow
-- [ ] Set up Winlogbeat if required
-
----
-
-## 6. Adversary Emulation
-
-### Priority
-- [ ] Set up Atomic Red Team
-- [ ] Run selected Atomic tests
-
-### If time/resources allow
-- [ ] Explore CALDERA
-- [ ] Explore Stratus Red Team
-
----
-
-## 7. Network Testing
-
-### Priority
-- [ ] Set up Nuclei
-- [ ] Run relevant Nuclei tests
-
-### If time/resources allow
-- [ ] Explore Scapy
-- [ ] Explore boofuzz
-- [ ] Explore Nmap NSE
-- [ ] Explore tcpreplay
-
----
-
-## 8. Software Testing
-
-### Priority
-- [ ] Set up Semgrep
-- [ ] Set up OWASP ZAP Automation Framework
-- [ ] Run relevant tests
-
-### If time/resources allow
-- [ ] Explore AFL++
-- [ ] Explore libFuzzer
-- [ ] Explore Trivy
-
----
-
-## 9. Orchestration
-
-### Priority
-- [ ] Set up Python and pytest
-- [ ] Create automated test execution
-
-### If time/resources allow
-- [ ] Set up GitHub Actions/self-hosted runner
-
----
-
-## 10. Reporting
-
-### Priority
-- [ ] Prepare ATT&CK Navigator
-- [ ] Record results as JSON
-- [ ] Commit results to GitHub
-
-### If time/resources allow
-- [ ] Create Sigma rules where required
-
----
-
-## 11. AI Tooling
-
-### Priority
-- [ ] Confirm LLM API access and spending limit
-- [ ] Create manual test cases
-- [ ] Generate LLM test cases
-- [ ] Compare LLM-generated and manual tests
-
-### If time/resources allow
-- [ ] Explore promptfoo
-- [ ] Explore other AI tools
-
----
+| Area | Priority | Status |
+|---|---|---|
+| **Host** | Windows cloud VM available | [ ] |
+|  | Confirm VM access and resources | [ ] |
+| **Lab as Code** | Set up Vagrant | [ ] |
+|  | Confirm Vagrant works with the available environment | [ ] |
+| **Targets** | Set up one Windows target | [ ] |
+|  | Set up Ubuntu target if available | [ ] |
+|  | Set up OWASP Juice Shop if practical | [ ] |
+|  | Set up C/C++ target if practical | [ ] |
+| **Network** | Confirm isolated network and IT approval | [ ] |
+| **Telemetry** | Set up Sysmon | [ ] |
+|  | Set up auditd if Ubuntu is used | [ ] |
+|  | Set up Elastic or Wazuh | [ ] |
+|  | Confirm telemetry is working | [ ] |
+| **Adversary Emulation** | Set up and run selected Atomic Red Team tests | [ ] |
+|  | Explore CALDERA if time/resources allow | [ ] |
+|  | Explore Stratus Red Team if time/resources allow | [ ] |
+| **Network Testing** | Set up and run relevant Nuclei tests | [ ] |
+|  | Explore Scapy, boofuzz, Nmap NSE or tcpreplay if required | [ ] |
+| **Software Testing** | Set up and run Semgrep | [ ] |
+|  | Set up and run OWASP ZAP Automation Framework | [ ] |
+|  | Explore AFL++, libFuzzer or Trivy if time allows | [ ] |
+| **Orchestration** | Set up Python and pytest | [ ] |
+|  | Create automated test execution | [ ] |
+|  | Set up GitHub Actions/self-hosted runner if available | [ ] |
+| **Reporting** | Prepare ATT&CK Navigator and record results | [ ] |
+|  | Store results as JSON and commit to GitHub | [ ] |
+|  | Create Sigma rules where required | [ ] |
+| **AI Tooling** | Confirm LLM API access and spending limit | [ ] |
+|  | Create manual test cases | [ ] |
+|  | Generate and test LLM test cases | [ ] |
+|  | Compare LLM-generated and manual tests | [ ] |
+|  | Explore promptfoo if time allows | [ ] |
 
 ## Required Approvals / Access
 
