@@ -8,8 +8,9 @@ approach within an isolated and authorised laboratory environment.
 The project will explore how adversary behaviours can be represented as
 repeatable test cases and mapped to the MITRE ATT&CK framework.
 
-The project will also investigate the use of AI and LLMs for test-case
-generation and evaluate the resulting tests against manually written
+The project will also investigate automated adversary emulation,
+software and protocol testing, and the use of AI and LLMs for test-case
+generation. AI-generated tests will be compared with manually written
 tests.
 
 ## Target Set
@@ -36,6 +37,15 @@ The following activities are outside the project scope:
 - Live malware
 - Real personal data
 
+## Documentation
+
+Project documentation, planning documents, research notes, checklists,
+and other placement materials are maintained in the
+[`docs/`](docs/) folder.
+
+The contents of the `docs` folder may be updated throughout the
+placement as the project develops and supervisor feedback is received.
+
 ## Escalation Contact
 
 **Supervisor:** Dr Ahsan
@@ -48,3 +58,8 @@ to the supervisor before proceeding.
 All testing activities will be performed only within the authorised
 and isolated laboratory environment and in accordance with the agreed
 rules of engagement.
+
+## Documentation
+
+Project documentation and other placement materials are maintained in the
+[`docs/`](docs/) folder.
