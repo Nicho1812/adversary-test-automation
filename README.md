@@ -39,7 +39,7 @@ The following activities are outside the project scope:
 
 ## Documentation
 
-Project documentation, planning documents, research notes, checklists,
+Project documentation, planning documents,
 and other placement materials are maintained in the
 [`docs/`](docs/) folder.
 
@@ -58,8 +58,3 @@ to the supervisor before proceeding.
 All testing activities will be performed only within the authorised
 and isolated laboratory environment and in accordance with the agreed
 rules of engagement.
-
-## Documentation
-
-Project documentation and other placement materials are maintained in the
-[`docs/`](docs/) folder.
