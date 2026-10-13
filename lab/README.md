@@ -6,7 +6,7 @@ This lab uses Vagrant and VirtualBox to create reproducible Linux and Windows ta
 
 | Setting | Linux Target | Windows Target |
 |---|---|---|
-| Operating System | Ubuntu 24.04.3 LTS | Windows 10 Enterprise |
+| Operating System | Ubuntu 24.04.3 LTS | Windows 10 |
 | Provisioning | Vagrant | Vagrant |
 | CPUs | 2 | 2 |
 | RAM | 2048 MB | 4096 MB |
@@ -18,7 +18,7 @@ This lab uses Vagrant and VirtualBox to create reproducible Linux and Windows ta
 
 ## Verification Results
 
-- Vagrant configuration validated successfully.
+- Vagrant configurations created for both targets.
 - Both VMs start successfully.
 - Ubuntu SSH and Windows WinRM connections verified.
 - Internal IP addresses configured successfully.
@@ -28,6 +28,5 @@ This lab uses Vagrant and VirtualBox to create reproducible Linux and Windows ta
 ## Remaining Work
 
 - Verify network isolation and outbound connectivity boundaries.
-- Ensure both Vagrant configurations are included in the repository.
 - Test recreating both VMs from a clean repository clone.
 - Document the final reproducibility test results.
