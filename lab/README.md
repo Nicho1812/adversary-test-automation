@@ -10,7 +10,7 @@ This lab uses Vagrant and VirtualBox to create reproducible Linux and Windows ta
 | Provisioning | Vagrant | Vagrant |
 | CPUs | 2 | 2 |
 | RAM | 2048 MB | 4096 MB |
-| Internal IP | 192.168.56.10 | 192.168.56.20 |
+| Internal IP | 192.168.56.10 | 192.168.56.21 |
 
 - Internal network: `cyber-lab`
 - Subnet: `192.168.56.0/24`
