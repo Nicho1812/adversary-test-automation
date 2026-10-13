@@ -35,3 +35,34 @@ Date: 13 October 2026
 - Verify connectivity between lab targets.
 - Verify the intended isolation boundaries.
 - Test recreation from a clean clone.
+
+## Lab Network Verification
+
+Date: 13 October 2026
+
+### Target Configuration
+
+| Target | Operating System | Internal Lab IP |
+|---|---|---|
+| Linux target | Ubuntu 24.04.3 LTS | 192.168.56.10 |
+| Windows target | Windows 10 Enterprise | 192.168.56.20 |
+
+### Network Configuration
+
+- VirtualBox internal network: `cyber-lab`
+- Subnet: `192.168.56.0/24`
+- Both targets have an additional NAT interface.
+- Both targets were provisioned using Vagrant.
+
+### Connectivity Tests
+
+| Test | Result |
+|---|---|
+| Windows to Ubuntu (`192.168.56.10`) | Successful |
+| Ubuntu to Windows (`192.168.56.20`) | Successful after allowing inbound ICMPv4 on Windows |
+
+### Remaining Work
+
+- Verify network isolation and outbound connectivity boundaries.
+- Confirm both targets can be recreated from the repository configuration.
+- Document the clean-clone recreation test.
