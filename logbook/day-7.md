@@ -1,7 +1,7 @@
 # Day 7 – Lab as Code Network Isolation and Troubleshooting
 
 **Date:** 14 October 2026  
-**Hours:** 5
+**Hours:** 5 hours
 
 ## What I did
 
