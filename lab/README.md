@@ -42,4 +42,4 @@ This lab uses Vagrant and VirtualBox to create reproducible Linux and Windows ta
 
 The lab is intended to operate using an isolated internal network and a host-only management network.
 
-NAT adapters are disabled in the clean-clone VM configurations. However, complete network isolation has not yet been verified. Do not treat the lab as fully isolated until the relevant connectivity and routing tests have passed.
+NAT adapters are disabled in the clean-clone VM configurations. However, complete network isolation has not yet been verified.
