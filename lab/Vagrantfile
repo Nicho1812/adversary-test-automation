@@ -1,12 +1,31 @@
+
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-24.04"
+  config.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
 
+  # Connect Vagrant through the host-only management network
+  config.ssh.host = "192.168.57.10"
+  config.ssh.port = 22
+
+  # Isolated lab network: Ubuntu to Windows
   config.vm.network "private_network",
     ip: "192.168.56.10",
     virtualbox__intnet: "cyber-lab"
 
+  # Host-only management network
+  config.vm.network "private_network",
+    ip: "192.168.57.10",
+    virtualbox__hostonly: true
+
+  # Disable NAT
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 2048
     vb.cpus = 2
+    vb.customize ["modifyvm", :id, "--nic1", "none"]
   end
+
+  # Configure both network interfaces
+  config.vm.provision "shell",
+    inline: "ip link set eth0 up && ip link set eth1 up && ip addr replace 192.168.56.10/24 dev eth0 && ip addr replace 192.168.57.10/24 dev eth1",
+    privileged: true
 end

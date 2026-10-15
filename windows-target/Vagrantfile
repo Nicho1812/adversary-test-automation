@@ -1,12 +1,25 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "gusztavvargadr/windows-10"
 
+  # Isolated lab network: Ubuntu to Windows
   config.vm.network "private_network",
-    ip: "192.168.56.20",
+    ip: "192.168.56.21",
     virtualbox__intnet: "cyber-lab"
 
+  # Host-only management network
+  config.vm.network "private_network",
+    ip: "192.168.57.21",
+    virtualbox__hostonly: true
+
+  # Disable the internet-connected NAT adapter
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 4096
     vb.cpus = 2
+    vb.customize ["modifyvm", :id, "--nic1", "none"]
   end
+
+  # Allow lab-network and host-only ICMP for connectivity tests
+  config.vm.provision "shell",
+    inline: "if (Get-NetFirewallRule -DisplayName 'Allow Lab ICMPv4' -ErrorAction SilentlyContinue) { Set-NetFirewallRule -DisplayName 'Allow Lab ICMPv4' -Enabled True -Direction Inbound -Action Allow -Profile Any } else { New-NetFirewallRule -DisplayName 'Allow Lab ICMPv4' -Protocol ICMPv4 -IcmpType 8 -Direction Inbound -Action Allow -Profile Any -RemoteAddress 192.168.56.10,192.168.57.1 }",
+    privileged: true
 end
