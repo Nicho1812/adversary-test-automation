@@ -1,7 +1,12 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-24.04"
-  config.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
+
+  config.vm.network "forwarded_port",
+    guest: 22,
+    host: 2222,
+    id: "ssh",
+    disabled: true
 
   # Connect Vagrant through the host-only management network
   config.ssh.host = "192.168.57.10"
@@ -24,8 +29,27 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--nic1", "none"]
   end
 
-  # Configure both network interfaces
+  # Persist network configuration for Ubuntu boot
   config.vm.provision "shell",
-    inline: "ip link set eth0 up && ip link set eth1 up && ip addr replace 192.168.56.10/24 dev eth0 && ip addr replace 192.168.57.10/24 dev eth1",
-    privileged: true
+    privileged: true,
+    inline: <<-SHELL
+cat > /etc/netplan/99-vagrant-lab.yaml <<'EOF'
+network:
+  version: 2
+  ethernets:
+    enp0s8:
+      dhcp4: false
+      addresses:
+        - 192.168.56.10/24
+    enp0s9:
+      dhcp4: false
+      addresses:
+        - 192.168.57.10/24
+EOF
+
+chmod 600 /etc/netplan/99-vagrant-lab.yaml
+chmod 600 /etc/netplan/50-vagrant.yaml
+netplan generate
+netplan apply
+SHELL
 end
