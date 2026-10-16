@@ -2,20 +2,25 @@
 
 ## Project Overview
 
-This project investigates and develops an automated adversary-testing
-approach within an isolated and authorised laboratory environment.
+This project investigates automated adversary testing in an isolated and authorised laboratory environment.
 
-The project will explore how adversary behaviours can be represented as
-repeatable test cases and mapped to the MITRE ATT&CK framework.
+It explores repeatable test cases, the MITRE ATT&CK framework, automated testing, and the use of AI and LLMs for test-case generation.
 
-The project will also investigate automated adversary emulation,
-software and protocol testing, and the use of AI and LLMs for test-case
-generation. AI-generated tests will be compared with manually written
-tests.
+## Current Progress
 
-## Target Set
+The Lab-as-Code implementation currently uses one Ubuntu 24.04 virtual machine managed by Vagrant and VirtualBox.
 
-The proposed target environment includes:
+The following have been tested successfully:
+
+- Fresh-clone build from GitHub.
+- Ubuntu VM creation and provisioning.
+- Network address and routing verification.
+- NAT disabled in the final isolated configuration.
+- Destroy-and-rebuild testing.
+
+The Windows target and other proposed targets have not yet been verified as part of the current implementation. The final scope remains subject to supervisor confirmation.
+
+## Proposed Target Set
 
 - Windows target
 - Ubuntu server
@@ -26,35 +31,28 @@ The final target configuration will be confirmed with the supervisor.
 
 ## Out of Scope
 
-The following activities are outside the project scope:
-
 - Campus networks
 - Public systems
 - Third-party systems
-- Personal systems
-- Unauthorised systems
+- Personal or unauthorised systems
 - Testing outside the authorised laboratory environment
 - Live malware
 - Real personal data
 
-## Documentation
+## Documentation and Evidence
 
-Project documentation, planning documents,
-and other placement materials are maintained in the
-[`docs/`](docs/) folder.
+Project documentation and planning materials are maintained in [`docs/`](docs/).
 
-The contents of the `docs` folder may be updated throughout the
-placement as the project develops and supervisor feedback is received.
+Lab verification records and supporting evidence are maintained in [`evidence/`](evidence/).
+
+Daily placement activities are recorded in [`logbook/`](logbook/).
 
 ## Escalation Contact
 
 **Supervisor:** Dr Ahsan
 
-Any unexpected security, infrastructure or scope issue will be reported
-to the supervisor before proceeding.
+Unexpected security, infrastructure, or scope issues will be reported to the supervisor before proceeding.
 
 ## Authorisation
 
-All testing activities will be performed only within the authorised
-and isolated laboratory environment and in accordance with the agreed
-rules of engagement.
+All testing must remain within the authorised laboratory environment and follow the agreed rules of engagement.
