@@ -58,3 +58,44 @@ to the supervisor before proceeding.
 All testing activities will be performed only within the authorised
 and isolated laboratory environment and in accordance with the agreed
 rules of engagement.
+
+## Single-Target Lab-as-Code
+
+The current implementation focuses on one Ubuntu 24.04 target.
+The Windows target and cross-target testing are deferred pending
+supervisor approval of the reduced scope.
+
+### Start and verify
+
+From the repository root, run:
+
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\build-lab.ps1"
+
+Verify Ubuntu's addresses and routes:
+
+    cd lab
+    vagrant ssh -c "ip -br address; ip route"
+
+Expected addresses:
+- Lab interface: 192.168.56.10/24
+- Management interface: 192.168.57.10/24
+- No IPv4 default route
+- VirtualBox adapter 1 disabled (none)
+
+### Stop and remove the VM
+
+From the lab directory, run:
+
+    vagrant halt
+
+To remove the Ubuntu VM, run:
+
+    vagrant destroy
+
+Review the confirmation before proceeding.
+
+### Reproducibility status
+
+The current Ubuntu VM has passed address, route, and adapter checks.
+A successful destroy-and-rebuild from a clean clone has not yet been
+demonstrated. Do not claim clean-clone reproducibility until tested.

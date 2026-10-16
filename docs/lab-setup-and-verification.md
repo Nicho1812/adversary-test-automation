@@ -1,53 +1,61 @@
-# Lab Setup and Verification
+﻿# Lab Setup and Verification
 
 ## Purpose
 
-This document records the setup and verification procedure for the
-authorised adversary-test laboratory.
+This document records the single-target Lab-as-Code implementation
+for the authorised adversary-test laboratory.
 
-## Network design
+## Reduced Scope
 
-| Component | Address | Network |
+The current implementation focuses on one Ubuntu 24.04 target.
+The Windows target and cross-target communication are deferred,
+pending supervisor approval of the reduced scope.
+
+## Network Design
+
+| Interface | Address | Network |
 |---|---|---|
 | Ubuntu lab interface | 192.168.56.10/24 | VirtualBox internal network: cyber-lab |
-| Windows lab interface | 192.168.56.21/24 | VirtualBox internal network: cyber-lab |
 | Ubuntu management interface | 192.168.57.10/24 | VirtualBox host-only |
-| Windows management interface | 192.168.57.21/24 | VirtualBox host-only |
 
-The external/NAT adapter is intended to be disabled in the final lab state.
-Neither guest should have an unintended default route.
+The NAT adapter must be disabled in the isolated state.
+The Ubuntu guest should have no IPv4 default route.
 
-## Current validation evidence
+## Verification Results
 
-The validation VMs passed these checks:
+The following checks passed on 16 October 2026:
 
-- Ubuntu and Windows could ping each other over the internal lab network.
+- Ubuntu booted successfully with Vagrant.
+- VirtualBox reported adapter 1 as none.
+- Adapter 2 was configured as the internal network.
+- Adapter 3 was configured as the host-only network.
+- Ubuntu retained its lab and management IPv4 addresses.
 - Ubuntu had no IPv4 default route.
-- Windows had no IPv4 default route.
-- VirtualBox reported adapter 1 as none, adapter 2 as intnet,
-  and adapter 3 as hostonly for both guests.
-- Ubuntu could not resolve example.com during the external connectivity test.
+- An external ping attempt returned "Network is unreachable".
 
-These results describe the existing validation VMs. They do not establish
-that a clean clone can recreate the lab automatically.
+These checks verify the observed Ubuntu VM state. They do not
+by themselves prove that every form of external connectivity is blocked.
 
-## Clean-clone acceptance criteria
+## Reproducibility Status
 
-The clean-clone test is not yet confirmed complete. Before marking the lab
-reproducible, verify that:
+Clean-clone build, automated provisioning from a clean clone,
+teardown and rebuild have not yet been confirmed successful.
 
-1. Both Vagrantfiles validate.
-2. Both guests can be created from a clean clone without manual console work.
-3. Both guests have their expected lab and management addresses.
-4. Both guests have no unintended default route.
-5. Ubuntu and Windows can communicate over the internal lab network.
-6. The external adapter is disabled in the final state.
-7. Teardown and rebuild from a clean clone succeeds.
-8. Test results and any limitations are recorded.
+Before declaring the implementation complete, verify:
 
-## Safety and authorisation
+1. The Vagrantfile validates.
+2. A clean clone can build and configure Ubuntu using documented commands.
+3. Ubuntu has the expected lab and management addresses.
+4. NAT is disabled and no unintended IPv4 default route exists.
+5. External connectivity restrictions are tested and recorded.
+6. The VM can be destroyed and recreated from the repository.
+7. Actual results and any limitations are documented.
 
-Only test systems within the authorised lab. Do not connect the lab to
-campus networks, public systems, third-party systems, or personal systems.
-Obtain the required infrastructure approval before treating isolation
-as formally authorised.
+## Safety and Authorisation
+
+Only test systems within the authorised lab.
+Do not connect the lab to campus networks, public systems,
+third-party systems or personal systems.
+
+Confirm the reduced scope with the supervisor before treating
+the single-target implementation as the final approved deliverable.
