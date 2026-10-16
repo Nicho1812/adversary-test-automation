@@ -1,18 +1,28 @@
 
 Vagrant.configure("2") do |config|
+  marker = File.join(__dir__, ".nat-disabled")
+  isolated = File.exist?(marker)
+
   config.vm.box = "gusztavvargadr/windows-10"
 
-  config.vm.network "forwarded_port",
-    guest: 5985, host: 55985, id: "winrm",
-    auto_correct: true
+  if isolated
+    config.winrm.host = "192.168.57.21"
+    config.winrm.port = 5985
+  else
+    config.vm.network "forwarded_port",
+      guest: 5985, host: 55985, id: "winrm",
+      auto_correct: true
+  end
 
   config.vm.network "private_network",
     ip: "192.168.56.21",
-    virtualbox__intnet: "cyber-lab"
+    virtualbox__intnet: "cyber-lab",
+    auto_config: false
 
   config.vm.network "private_network",
     ip: "192.168.57.21",
-    virtualbox__hostonly: true
+    virtualbox__hostonly: true,
+    auto_config: false
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 4096
@@ -20,7 +30,7 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--macaddress1", "08002729B0AD"]
     vb.customize ["modifyvm", :id, "--macaddress2", "080027CCF120"]
     vb.customize ["modifyvm", :id, "--macaddress3", "0800277E2D5D"]
-    vb.customize ["modifyvm", :id, "--nic1", "nat"]
+    vb.customize ["modifyvm", :id, "--nic1", isolated ? "none" : "nat"]
   end
 
   config.vm.provision "shell",
@@ -28,35 +38,36 @@ Vagrant.configure("2") do |config|
     run: "always",
     inline: <<-POWERSHELL
 $ErrorActionPreference = "Stop"
-
 $labMac = "08-00-27-CC-F1-20"
 $mgmtMac = "08-00-27-7E-2D-5D"
 
-$lab = Get-NetAdapter | Where-Object {
-  $_.MacAddress -eq $labMac
-}
-$mgmt = Get-NetAdapter | Where-Object {
-  $_.MacAddress -eq $mgmtMac
-}
+$lab = Get-NetAdapter | Where-Object { $_.MacAddress -eq $labMac }
+$mgmt = Get-NetAdapter | Where-Object { $_.MacAddress -eq $mgmtMac }
 
 if (-not $lab -or -not $mgmt) {
-  throw "Lab or management adapter not found. Check adapter MAC addresses."
+  throw "Lab or management adapter not found."
 }
 
-Set-NetIPInterface -InterfaceIndex $lab.ifIndex -AddressFamily IPv4 -Dhcp Disabled
-Set-NetIPInterface -InterfaceIndex $mgmt.ifIndex -AddressFamily IPv4 -Dhcp Disabled
+foreach ($entry in @(
+  @{ InterfaceIndex = $lab.ifIndex; IP = "192.168.56.21" },
+  @{ InterfaceIndex = $mgmt.ifIndex; IP = "192.168.57.21" }
+)) {
+  Set-NetIPInterface -InterfaceIndex $entry.InterfaceIndex -AddressFamily IPv4 -Dhcp Disabled
 
-Get-NetIPAddress -InterfaceIndex $lab.ifIndex -AddressFamily IPv4 -ErrorAction SilentlyContinue |
-  Where-Object { $_.IPAddress -ne "127.0.0.1" } |
-  Remove-NetIPAddress -Confirm:$false -ErrorAction SilentlyContinue
+  $existing = Get-NetIPAddress -InterfaceIndex $entry.InterfaceIndex -AddressFamily IPv4 -ErrorAction SilentlyContinue |
+    Where-Object { $_.IPAddress -eq $entry.IP }
 
-Get-NetIPAddress -InterfaceIndex $mgmt.ifIndex -AddressFamily IPv4 -ErrorAction SilentlyContinue |
-  Where-Object { $_.IPAddress -ne "127.0.0.1" } |
-  Remove-NetIPAddress -Confirm:$false -ErrorAction SilentlyContinue
+  if (-not $existing) {
+    Get-NetIPAddress -InterfaceIndex $entry.InterfaceIndex -AddressFamily IPv4 -ErrorAction SilentlyContinue |
+      Where-Object { $_.IPAddress -ne "127.0.0.1" } |
+      Remove-NetIPAddress -Confirm:$false -ErrorAction SilentlyContinue
 
-New-NetIPAddress -InterfaceIndex $lab.ifIndex -IPAddress "192.168.56.21" -PrefixLength 24
-New-NetIPAddress -InterfaceIndex $mgmt.ifIndex -IPAddress "192.168.57.21" -PrefixLength 24
+    New-NetIPAddress -InterfaceIndex $entry.InterfaceIndex -IPAddress $entry.IP -PrefixLength 24
+  }
+}
 
-New-NetFirewallRule -DisplayName "Allow Lab ICMPv4" -Protocol ICMPv4 -IcmpType 8 -Direction Inbound -Action Allow -Profile Any -RemoteAddress "192.168.56.10" -ErrorAction SilentlyContinue
-    POWERSHELL
+if (-not (Get-NetFirewallRule -DisplayName "Allow Lab ICMPv4" -ErrorAction SilentlyContinue)) {
+  New-NetFirewallRule -DisplayName "Allow Lab ICMPv4" -Protocol ICMPv4 -IcmpType 8 -Direction Inbound -Action Allow -Profile Any -RemoteAddress "192.168.56.10"
+}
+POWERSHELL
 end
