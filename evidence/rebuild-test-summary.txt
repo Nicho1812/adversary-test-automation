@@ -1,0 +1,17 @@
+Fresh-clone and destroy-and-rebuild verification
+Date: 16 October 2026
+Repository branch: lab-isolation-fix
+Fresh-clone folder: C:\lab-as-code-fresh-test
+
+Results:
+- Fresh clone from GitHub built and provisioned Ubuntu successfully.
+- Disposable VM was destroyed and recreated successfully.
+- Lab address: 192.168.56.10/24
+- Management address: 192.168.57.10/24
+- No IPv4 default route was present.
+- VirtualBox adapter 1: none
+- VirtualBox adapter 2: intnet
+- VirtualBox adapter 3: hostonly
+- Build script result: PASS
+
+Note: This summary records the observed test results; it is not a raw transcript of the console output.
