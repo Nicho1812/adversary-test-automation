@@ -1,103 +1,92 @@
-﻿# Cyber Security Placement â€“ Adversary Test Automation
+# Adversary Test Automation
 
-## Project Overview
+## Overview
 
-This project investigates and develops an automated adversary-testing
-approach within an isolated and authorised laboratory environment.
+This project explores building a repeatable and isolated cybersecurity testing lab using Vagrant and Oracle VirtualBox.
 
-The project will explore how adversary behaviours can be represented as
-repeatable test cases and mapped to the MITRE ATT&CK framework.
+## Current Setup
 
-The project will also investigate automated adversary emulation,
-software and protocol testing, and the use of AI and LLMs for test-case
-generation. AI-generated tests will be compared with manually written
-tests.
+The current implementation uses one Ubuntu 24.04 virtual machine with:
 
-## Target Set
+- An internal lab network.
+- A separate host-only management network.
+- NAT disabled in the final configuration.
+- Automated network verification.
 
-The proposed target environment includes:
+The Windows target and cross-target testing are deferred pending supervisor approval.
 
-- Windows target
-- Ubuntu server
-- OWASP Juice Shop
-- One small C/C++ library
+## Requirements
 
-The final target configuration will be confirmed with the supervisor.
+- Windows
+- Oracle VirtualBox
+- Vagrant
+- PowerShell
 
-## Out of Scope
+## Build and Verify
 
-The following activities are outside the project scope:
+Run this command from the repository root:
 
-- Campus networks
-- Public systems
-- Third-party systems
-- Personal systems
-- Unauthorised systems
-- Testing outside the authorised laboratory environment
-- Live malware
-- Real personal data
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\build-lab.ps1"
+```
 
-## Documentation
+The script creates or reconfigures the Ubuntu VM and checks its network configuration.
 
-Project documentation, planning documents,
-and other placement materials are maintained in the
-[`docs/`](docs/) folder.
+Expected results:
 
-The contents of the `docs` folder may be updated throughout the
-placement as the project develops and supervisor feedback is received.
+- Lab IP: `192.168.56.10/24`
+- Management IP: `192.168.57.10/24`
+- No IPv4 default route
+- VirtualBox adapter 1: `none` (NAT disabled)
+- VirtualBox adapter 2: `intnet` (internal network)
+- VirtualBox adapter 3: `hostonly` (management network)
 
-## Escalation Contact
+## Manual Verification
+
+From the `lab` directory, run:
+
+```powershell
+vagrant ssh -c "ip -br address; ip route"
+```
+
+## Stop or Remove the Lab
+
+From the `lab` directory, stop the VM:
+
+```powershell
+vagrant halt
+```
+
+To remove the VM and its virtual disks:
+
+```powershell
+vagrant destroy
+```
+
+To rebuild the lab, return to the repository root and run the build command again.
+
+## Test Results
+
+The following tests passed:
+
+- Fresh-clone build from GitHub.
+- Ubuntu VM creation and provisioning.
+- Network address and routing checks.
+- Verification that NAT is disabled.
+- Destroy-and-rebuild test using a disposable VM.
+
+These results apply to the single-Ubuntu setup. They do not verify Windows deployment or communication between multiple targets.
+
+## Evidence
+
+The `evidence/` directory contains:
+
+- `lab-verification.txt`
+- `virtualbox-adapters.txt`
+- `rebuild-test-summary.txt`
+
+## Safety
+
+Use the lab only for authorised testing. Do not test external or third-party systems without permission. Consult the supervisor if unexpected connectivity or scope issues arise.
 
 **Supervisor:** Dr Ahsan
-
-Any unexpected security, infrastructure or scope issue will be reported
-to the supervisor before proceeding.
-
-## Authorisation
-
-All testing activities will be performed only within the authorised
-and isolated laboratory environment and in accordance with the agreed
-rules of engagement.
-
-## Single-Target Lab-as-Code
-
-The current implementation focuses on one Ubuntu 24.04 target.
-The Windows target and cross-target testing are deferred pending
-supervisor approval of the reduced scope.
-
-### Start and verify
-
-From the repository root, run:
-
-    powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\build-lab.ps1"
-
-Verify Ubuntu's addresses and routes:
-
-    cd lab
-    vagrant ssh -c "ip -br address; ip route"
-
-Expected addresses:
-- Lab interface: 192.168.56.10/24
-- Management interface: 192.168.57.10/24
-- No IPv4 default route
-- VirtualBox adapter 1 disabled (none)
-
-### Stop and remove the VM
-
-From the lab directory, run:
-
-    vagrant halt
-
-To remove the Ubuntu VM, run:
-
-    vagrant destroy
-
-Review the confirmation before proceeding.
-
-### Reproducibility status
-
-A fresh clone from GitHub successfully created and provisioned a new Ubuntu VM. The build script verified the expected lab and management IP addresses, absence of an IPv4 default route, and VirtualBox adapter 1 set to `none`.
-
-The destroy-and-rebuild lifecycle test passed: the disposable VM was destroyed, recreated from the fresh clone, and the network isolation checks passed.
-
-
