@@ -98,5 +98,6 @@ Review the confirmation before proceeding.
 
 A fresh clone from GitHub successfully created and provisioned a new Ubuntu VM. The build script verified the expected lab and management IP addresses, absence of an IPv4 default route, and VirtualBox adapter 1 set to `none`.
 
-A separate destroy-and-rebuild lifecycle test has not yet been performed.
+The destroy-and-rebuild lifecycle test passed: the disposable VM was destroyed, recreated from the fresh clone, and the network isolation checks passed.
+
 

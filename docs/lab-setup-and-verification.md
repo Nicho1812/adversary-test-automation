@@ -41,7 +41,7 @@ by themselves prove that every form of external connectivity is blocked.
 A fresh clone from GitHub successfully created and provisioned a new Ubuntu VM. The build script verified the expected lab and management IP addresses, no IPv4 default route, and VirtualBox adapter 1 set to 
 one.
 
-A separate destroy-and-rebuild lifecycle test has not yet been performed.
+The destroy-and-rebuild lifecycle test passed: the disposable VM was destroyed, recreated from the fresh clone, and the network isolation checks passed.
 ## Safety and Authorisation
 
 Only test systems within the authorised lab.
@@ -50,4 +50,5 @@ third-party systems or personal systems.
 
 Confirm the reduced scope with the supervisor before treating
 the single-target implementation as the final approved deliverable.
+
 
