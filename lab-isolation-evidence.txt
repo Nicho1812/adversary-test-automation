@@ -1,0 +1,25 @@
+Lab-as-Code Network Verification
+Date: 2026-10-16 13:50:14 +11:00
+
+Ubuntu VM UUID: 8506c930-13e0-4746-8618-cd23a1eaf404
+Windows VM UUID: 21b3b969-15da-411b-9fce-2dba7056a219
+
+Ubuntu:
+- lab0: 192.168.56.10/24
+- mgmt0: 192.168.57.10/24
+- No IPv4 default route
+- External hostname lookup failed
+- Ping to Windows 192.168.56.21 succeeded
+
+Windows:
+- Lab IP: 192.168.56.21
+- Management IP: 192.168.57.21
+- No IPv4 default gateway shown
+- Ping to Ubuntu 192.168.56.10 succeeded
+
+VirtualBox:
+- Both VMs running
+- NIC1 disabled (no NAT)
+- NIC2 internal network: cyber-lab
+- NIC3 host-only management network
+- NIC3 host-only management network

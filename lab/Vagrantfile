@@ -1,54 +1,71 @@
-
 Vagrant.configure("2") do |config|
+  marker = File.join(__dir__, ".nat-disabled")
+  nat_disabled = File.exist?(marker)
+
   config.vm.box = "bento/ubuntu-24.04"
+  config.ssh.host = "192.168.57.10" if nat_disabled
+  config.ssh.port = nat_disabled ? 22 : 2222
 
   config.vm.network "forwarded_port",
-    guest: 22,
-    host: 2222,
-    id: "ssh",
-    disabled: true
+    guest: 22, host: 2222, id: "ssh", disabled: nat_disabled
 
-  # Connect Vagrant through the host-only management network
-  config.ssh.host = "192.168.57.10"
-  config.ssh.port = 22
-
-  # Isolated lab network: Ubuntu to Windows
   config.vm.network "private_network",
     ip: "192.168.56.10",
-    virtualbox__intnet: "cyber-lab"
+    virtualbox__intnet: "cyber-lab",
+    auto_config: false
 
-  # Host-only management network
   config.vm.network "private_network",
     ip: "192.168.57.10",
-    virtualbox__hostonly: true
+    virtualbox__hostonly: true,
+    auto_config: false
 
-  # Disable NAT
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 2048
     vb.cpus = 2
-    vb.customize ["modifyvm", :id, "--nic1", "none"]
+    vb.customize ["modifyvm", :id, "--macaddress1", "080027000055"]
+    vb.customize ["modifyvm", :id, "--macaddress2", "080027000056"]
+    vb.customize ["modifyvm", :id, "--macaddress3", "080027000057"]
+    vb.customize ["modifyvm", :id, "--nic1", nat_disabled ? "none" : "nat"]
   end
 
-  # Persist network configuration for Ubuntu boot
   config.vm.provision "shell",
     privileged: true,
+    run: "once",
     inline: <<-SHELL
+set -eu
+mkdir -p /etc/cloud/cloud.cfg.d /etc/netplan/backup
+printf 'network: {config: disabled}\\n' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+
+for f in /etc/netplan/*.yaml; do
+  [ -f "$f" ] || continue
+  [ "$f" = "/etc/netplan/99-vagrant-lab.yaml" ] && continue
+  mv "$f" "/etc/netplan/backup/$(basename "$f").disabled"
+done
+
 cat > /etc/netplan/99-vagrant-lab.yaml <<'EOF'
 network:
   version: 2
   ethernets:
-    enp0s8:
+    nat0:
+      match:
+        macaddress: "08:00:27:00:00:55"
+      set-name: nat0
+      dhcp4: true
+    lab0:
+      match:
+        macaddress: "08:00:27:00:00:56"
+      set-name: lab0
       dhcp4: false
-      addresses:
-        - 192.168.56.10/24
-    enp0s9:
+      addresses: [192.168.56.10/24]
+    mgmt0:
+      match:
+        macaddress: "08:00:27:00:00:57"
+      set-name: mgmt0
       dhcp4: false
-      addresses:
-        - 192.168.57.10/24
+      addresses: [192.168.57.10/24]
 EOF
 
 chmod 600 /etc/netplan/99-vagrant-lab.yaml
-chmod 600 /etc/netplan/50-vagrant.yaml
 netplan generate
 netplan apply
 SHELL
