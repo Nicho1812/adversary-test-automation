@@ -1,4 +1,4 @@
-# Cyber Security Placement – Adversary Test Automation
+﻿# Cyber Security Placement â€“ Adversary Test Automation
 
 ## Project Overview
 
@@ -96,6 +96,7 @@ Review the confirmation before proceeding.
 
 ### Reproducibility status
 
-The current Ubuntu VM has passed address, route, and adapter checks.
-A successful destroy-and-rebuild from a clean clone has not yet been
-demonstrated. Do not claim clean-clone reproducibility until tested.
+A fresh clone from GitHub successfully created and provisioned a new Ubuntu VM. The build script verified the expected lab and management IP addresses, absence of an IPv4 default route, and VirtualBox adapter 1 set to `none`.
+
+A separate destroy-and-rebuild lifecycle test has not yet been performed.
+

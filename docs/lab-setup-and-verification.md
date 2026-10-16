@@ -38,19 +38,10 @@ by themselves prove that every form of external connectivity is blocked.
 
 ## Reproducibility Status
 
-Clean-clone build, automated provisioning from a clean clone,
-teardown and rebuild have not yet been confirmed successful.
+A fresh clone from GitHub successfully created and provisioned a new Ubuntu VM. The build script verified the expected lab and management IP addresses, no IPv4 default route, and VirtualBox adapter 1 set to 
+one.
 
-Before declaring the implementation complete, verify:
-
-1. The Vagrantfile validates.
-2. A clean clone can build and configure Ubuntu using documented commands.
-3. Ubuntu has the expected lab and management addresses.
-4. NAT is disabled and no unintended IPv4 default route exists.
-5. External connectivity restrictions are tested and recorded.
-6. The VM can be destroyed and recreated from the repository.
-7. Actual results and any limitations are documented.
-
+A separate destroy-and-rebuild lifecycle test has not yet been performed.
 ## Safety and Authorisation
 
 Only test systems within the authorised lab.
@@ -59,3 +50,4 @@ third-party systems or personal systems.
 
 Confirm the reduced scope with the supervisor before treating
 the single-target implementation as the final approved deliverable.
+
