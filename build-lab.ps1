@@ -1,53 +1,65 @@
 $ErrorActionPreference = "Stop"
 $LabDir = Join-Path $PSScriptRoot "lab"
+$Marker = Join-Path $LabDir ".nat-disabled"
 $VBoxManage = Join-Path $env:ProgramFiles "Oracle\VirtualBox\VBoxManage.exe"
+$IdFile = Join-Path $LabDir ".vagrant\machines\default\virtualbox\id"
 
 Push-Location $LabDir
 try {
     vagrant validate
     if ($LASTEXITCODE -ne 0) { throw "Vagrant validation failed." }
 
-    if (!(Test-Path ".nat-disabled")) {
-        throw "Isolation marker missing. Restore it before running verification."
+    # Bootstrap using NAT, then restore isolation.
+    Remove-Item $Marker -Force -ErrorAction SilentlyContinue
+
+    if (Test-Path $IdFile) {
+        vagrant reload
+        if ($LASTEXITCODE -ne 0) { throw "Could not switch existing VM to bootstrap networking." }
+
+        vagrant provision
+        if ($LASTEXITCODE -ne 0) { throw "Provisioning failed." }
+    }
+    else {
+        vagrant up --provision
+        if ($LASTEXITCODE -ne 0) { throw "Fresh Ubuntu bootstrap failed." }
     }
 
-    vagrant up
-    if ($LASTEXITCODE -ne 0) { throw "Vagrant startup failed." }
+    Set-Content -Path $Marker -Value "NAT disabled; isolated lab mode" -NoNewline
+    vagrant reload
+    if ($LASTEXITCODE -ne 0) { throw "Could not enable isolated mode." }
 
     $network = vagrant ssh -c "ip -br address; ip route" | Out-String
-    if ($LASTEXITCODE -ne 0) { throw "SSH network check failed." }
+    if ($LASTEXITCODE -ne 0) { throw "Guest network check failed." }
     Write-Host $network
 
     if ($network -match '(?m)^default\s') {
-        throw "FAIL: an IPv4 default route exists."
+        throw "FAIL: IPv4 default route exists."
     }
     if ($network -notmatch '192\.168\.56\.10/24' -or
         $network -notmatch '192\.168\.57\.10/24') {
-        throw "FAIL: expected IP address is missing."
+        throw "FAIL: expected lab or management IP is missing."
     }
 
-    $idFile = Join-Path $LabDir ".vagrant\machines\default\virtualbox\id"
-    if (!(Test-Path $idFile)) { throw "Vagrant VM ID file not found." }
-    $vmId = (Get-Content $idFile -Raw).Trim()
+    $vmId = (Get-Content $IdFile -Raw).Trim()
     $vmLine = & $VBoxManage list vms |
         Where-Object { $_ -match [regex]::Escape($vmId) } |
         Select-Object -First 1
+    if (!$vmLine) { throw "Could not find VM in VirtualBox." }
 
-    if (!$vmLine) { throw "Could not find this VM in VirtualBox." }
     $vmName = [regex]::Match($vmLine, '^"(.+)" \{').Groups[1].Value
     $info = & $VBoxManage showvminfo $vmName --machinereadable
     if ($LASTEXITCODE -ne 0) { throw "Could not inspect VirtualBox VM." }
 
     $nic1 = $info | Where-Object { $_ -match '^nic1=' } |
         Select-Object -First 1
-    Write-Host "VirtualBox VM: $vmName"
+    Write-Host "VM: $vmName"
     Write-Host "Adapter 1: $nic1"
 
     if ($nic1 -ne 'nic1="none"') {
-        throw "FAIL: VirtualBox adapter 1 is not disabled."
+        throw "FAIL: NAT adapter is not disabled."
     }
 
-    Write-Host "`nPASS: Ubuntu isolation and network verification passed."
+    Write-Host "`nPASS: isolated Ubuntu build and network checks passed."
 }
 finally {
     Pop-Location
