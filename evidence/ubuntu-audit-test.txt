@@ -1,0 +1,325 @@
+﻿----
+type=PROCTITLE msg=audit(10/19/2026 03:38:00.965:260) : proctitle=auditctl -a always,exit -F arch b64 -S execve -k placement_test 
+type=SYSCALL msg=audit(10/19/2026 03:38:00.965:260) : arch=x86_64 syscall=sendto success=yes exit=1072 a0=0x4 a1=0x7ffceae98860 a2=0x430 a3=0x0 items=0 ppid=7511 pid=7512 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=pts1 ses=504 comm=auditctl exe=/usr/sbin/auditctl subj=unconfined key=(null) 
+type=CONFIG_CHANGE msg=audit(10/19/2026 03:38:00.965:260) : auid=vagrant ses=504 subj=unconfined op=add_rule key=placement_test list=exit res=yes 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:00.971:263) : proctitle=/usr/bin/id 
+type=PATH msg=audit(10/19/2026 03:38:00.971:263) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:00.971:263) : item=0 name=/usr/bin/id inode=1456934 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:00.971:263) : cwd=/home/vagrant 
+type=EXECVE msg=audit(10/19/2026 03:38:00.971:263) : argc=1 a0=/usr/bin/id 
+type=SYSCALL msg=audit(10/19/2026 03:38:00.971:263) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x647e40fd4330 a1=0x647e40fdca70 a2=0x647e40fec750 a3=0x647e40fdca70 items=2 ppid=7506 pid=7514 auid=vagrant uid=vagrant gid=vagrant euid=vagrant suid=vagrant fsuid=vagrant egid=vagrant sgid=vagrant fsgid=vagrant tty=pts0 ses=504 comm=id exe=/usr/bin/id subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:00.977:264) : proctitle=sleep 1 
+type=PATH msg=audit(10/19/2026 03:38:00.977:264) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:00.977:264) : item=0 name=/usr/bin/sleep inode=1466214 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:00.977:264) : cwd=/home/vagrant 
+type=EXECVE msg=audit(10/19/2026 03:38:00.977:264) : argc=2 a0=sleep a1=1 
+type=SYSCALL msg=audit(10/19/2026 03:38:00.977:264) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x647e40fd80b0 a1=0x647e40fd8050 a2=0x647e40fec750 a3=0x647e40fd8050 items=2 ppid=7506 pid=7515 auid=vagrant uid=vagrant gid=vagrant euid=vagrant suid=vagrant fsuid=vagrant egid=vagrant sgid=vagrant fsgid=vagrant tty=pts0 ses=504 comm=sleep exe=/usr/bin/sleep subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:01.990:265) : proctitle=sudo ausearch -k placement_test -i 
+type=PATH msg=audit(10/19/2026 03:38:01.990:265) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:01.990:265) : item=0 name=/usr/bin/sudo inode=1442869 dev=fc:00 mode=file,suid,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:01.990:265) : cwd=/home/vagrant 
+type=EXECVE msg=audit(10/19/2026 03:38:01.990:265) : argc=5 a0=sudo a1=ausearch a2=-k a3=placement_test a4=-i 
+type=SYSCALL msg=audit(10/19/2026 03:38:01.990:265) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x647e40fec290 a1=0x647e40fcf9f0 a2=0x647e40fec750 a3=0x8 items=2 ppid=7505 pid=7506 auid=vagrant uid=vagrant gid=vagrant euid=root suid=root fsuid=root egid=vagrant sgid=vagrant fsgid=vagrant tty=pts0 ses=504 comm=sudo exe=/usr/bin/sudo subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:02.006:270) : proctitle=ausearch -k placement_test -i 
+type=PATH msg=audit(10/19/2026 03:38:02.006:270) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:02.006:270) : item=0 name=/usr/sbin/ausearch inode=1442594 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:02.006:270) : cwd=/home/vagrant 
+type=EXECVE msg=audit(10/19/2026 03:38:02.006:270) : argc=4 a0=ausearch a1=-k a2=placement_test a3=-i 
+type=SYSCALL msg=audit(10/19/2026 03:38:02.006:270) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x60b88df79e98 a1=0x60b88df6ea60 a2=0x60b88df7d6b0 a3=0x64 items=2 ppid=7516 pid=7517 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=pts1 ses=504 comm=ausearch exe=/usr/sbin/ausearch subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.221:275) : proctitle=/usr/sbin/sshd -D -R 
+type=PATH msg=audit(10/19/2026 03:38:45.221:275) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.221:275) : item=0 name=/usr/sbin/sshd inode=1456698 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.221:275) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.221:275) : argc=3 a0=/usr/sbin/sshd a1=-D a2=-R 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.221:275) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x60179d04d950 a1=0x60179d09ff60 a2=0x60179d04d990 a3=0x8 items=2 ppid=1021 pid=7518 auid=unset uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=unset comm=sshd exe=/usr/sbin/sshd subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.396:279) : proctitle=sh -c -- /usr/bin/env -i PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin run-parts --lsbsysinit /etc/update-mo 
+type=PATH msg=audit(10/19/2026 03:38:45.396:279) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.396:279) : item=0 name=/bin/sh inode=1442345 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.396:279) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.396:279) : argc=4 a0=sh a1=-c a2=-- a3=/usr/bin/env -i PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin run-parts --lsbsysinit /etc/update-motd.d > /run/motd.dynamic.new 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.396:279) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x7aa8cb3cb42f a1=0x7ffc0b0396d0 a2=0x5e1ed3e719c0 a3=0x8 items=2 ppid=7518 pid=7520 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=sh exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.400:280) : proctitle=/usr/bin/env -i PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin run-parts --lsbsysinit /etc/update-motd.d 
+type=PATH msg=audit(10/19/2026 03:38:45.400:280) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.400:280) : item=0 name=/usr/bin/env inode=1456633 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.400:280) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.400:280) : argc=6 a0=/usr/bin/env a1=-i a2=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin a3=run-parts a4=--lsbsysinit a5=/etc/update-motd.d 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.400:280) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x63b47c0946c8 a1=0x63b47c0947c8 a2=0x63b47c094968 a3=0x1 items=2 ppid=7520 pid=7521 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=env exe=/usr/bin/env subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.401:281) : proctitle=/usr/bin/env -i PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin run-parts --lsbsysinit /etc/update-motd.d 
+type=PATH msg=audit(10/19/2026 03:38:45.401:281) : item=0 name=/usr/local/sbin/run-parts nametype=UNKNOWN cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.401:281) : cwd=/ 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.401:281) : arch=x86_64 syscall=execve success=no exit=ENOENT(No such file or directory) a0=0x7ffd7fe481e0 a1=0x7ffd7fe48570 a2=0x611f3f8df520 a3=0x7ffd7fe49d80 items=1 ppid=7520 pid=7521 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=env exe=/usr/bin/env subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.403:282) : proctitle=/usr/bin/env -i PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin run-parts --lsbsysinit /etc/update-motd.d 
+type=PATH msg=audit(10/19/2026 03:38:45.403:282) : item=0 name=/usr/local/bin/run-parts nametype=UNKNOWN cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.403:282) : cwd=/ 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.403:282) : arch=x86_64 syscall=execve success=no exit=ENOENT(No such file or directory) a0=0x7ffd7fe481e0 a1=0x7ffd7fe48570 a2=0x611f3f8df520 a3=0x7ffd7fe49d80 items=1 ppid=7520 pid=7521 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=env exe=/usr/bin/env subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.403:283) : proctitle=/usr/bin/env -i PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin run-parts --lsbsysinit /etc/update-motd.d 
+type=PATH msg=audit(10/19/2026 03:38:45.403:283) : item=0 name=/usr/sbin/run-parts nametype=UNKNOWN cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.403:283) : cwd=/ 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.403:283) : arch=x86_64 syscall=execve success=no exit=ENOENT(No such file or directory) a0=0x7ffd7fe481e0 a1=0x7ffd7fe48570 a2=0x611f3f8df520 a3=0x7ffd7fe49d80 items=1 ppid=7520 pid=7521 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=env exe=/usr/bin/env subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.403:284) : proctitle=/usr/bin/env -i PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin run-parts --lsbsysinit /etc/update-motd.d 
+type=PATH msg=audit(10/19/2026 03:38:45.403:284) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.403:284) : item=0 name=/usr/bin/run-parts inode=1442714 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.403:284) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.403:284) : argc=3 a0=run-parts a1=--lsbsysinit a2=/etc/update-motd.d 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.403:284) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x7ffd7fe481e0 a1=0x7ffd7fe48570 a2=0x611f3f8df520 a3=0x7ffd7fe49d80 items=2 ppid=7520 pid=7521 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=run-parts exe=/usr/bin/run-parts subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.406:285) : proctitle=/bin/sh /etc/update-motd.d/00-header 
+type=PATH msg=audit(10/19/2026 03:38:45.406:285) : item=2 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.406:285) : item=1 name=/bin/sh inode=1442345 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.406:285) : item=0 name=/etc/update-motd.d/00-header inode=525833 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.406:285) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.406:285) : argc=2 a0=/bin/sh a1=/etc/update-motd.d/00-header 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.406:285) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x56dcea18dde0 a1=0x56dcea1892a0 a2=0x7fffda0677a8 a3=0x8 items=3 ppid=7521 pid=7522 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=00-header exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.411:286) : proctitle=uname -o 
+type=PATH msg=audit(10/19/2026 03:38:45.411:286) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.411:286) : item=0 name=/usr/bin/uname inode=1466691 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.411:286) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.411:286) : argc=2 a0=uname a1=-o 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.411:286) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x59650776c540 a1=0x59650776c510 a2=0x59650776c528 a3=0x59650776e660 items=2 ppid=7522 pid=7523 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=uname exe=/usr/bin/uname subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.414:287) : proctitle=uname -r 
+type=PATH msg=audit(10/19/2026 03:38:45.414:287) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.414:287) : item=0 name=/usr/bin/uname inode=1466691 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.414:287) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.414:287) : argc=2 a0=uname a1=-r 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.414:287) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x59650776c560 a1=0x59650776c530 a2=0x59650776c548 a3=0x59650776e660 items=2 ppid=7522 pid=7524 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=uname exe=/usr/bin/uname subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.417:288) : proctitle=uname -m 
+type=PATH msg=audit(10/19/2026 03:38:45.417:288) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.417:288) : item=0 name=/usr/bin/uname inode=1466691 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.417:288) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.417:288) : argc=2 a0=uname a1=-m 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.417:288) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x59650776c798 a1=0x59650776c558 a2=0x59650776c570 a3=0x59650776e660 items=2 ppid=7522 pid=7525 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=uname exe=/usr/bin/uname subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.421:289) : proctitle=/bin/sh /etc/update-motd.d/10-help-text 
+type=PATH msg=audit(10/19/2026 03:38:45.421:289) : item=2 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.421:289) : item=1 name=/bin/sh inode=1442345 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.421:289) : item=0 name=/etc/update-motd.d/10-help-text inode=525834 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.421:289) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.421:289) : argc=2 a0=/bin/sh a1=/etc/update-motd.d/10-help-text 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.421:289) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x56dcea18dde0 a1=0x56dcea1892a0 a2=0x7fffda0677a8 a3=0x8 items=3 ppid=7521 pid=7526 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=10-help-text exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.424:290) : proctitle=/bin/sh /etc/update-motd.d/50-landscape-sysinfo 
+type=PATH msg=audit(10/19/2026 03:38:45.424:290) : item=2 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.424:290) : item=1 name=/bin/sh inode=1442345 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.424:290) : item=0 name=/etc/update-motd.d/50-landscape-sysinfo inode=1449654 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.424:290) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.424:290) : argc=2 a0=/bin/sh a1=/etc/update-motd.d/50-landscape-sysinfo 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.424:290) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x56dcea18dde0 a1=0x56dcea1892a0 a2=0x7fffda0677a8 a3=0x8 items=3 ppid=7521 pid=7527 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=50-landscape-sy exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.429:291) : proctitle=find /var/lib/landscape/landscape-sysinfo.cache -newermt now-1 minutes 
+type=PATH msg=audit(10/19/2026 03:38:45.429:291) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.429:291) : item=0 name=/usr/bin/find inode=1442415 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.429:291) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.429:291) : argc=4 a0=find a1=/var/lib/landscape/landscape-sysinfo.cache a2=-newermt a3=now-1 minutes 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.429:291) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5b24b031a728 a1=0x5b24b031a6c8 a2=0x5b24b031a710 a3=0x1 items=2 ppid=7527 pid=7528 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=find exe=/usr/bin/find subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.435:292) : proctitle=grep -c ^processor /proc/cpuinfo 
+type=PATH msg=audit(10/19/2026 03:38:45.435:292) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.435:292) : item=0 name=/usr/bin/grep inode=1442450 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.435:292) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.435:292) : argc=4 a0=grep a1=-c a2=^processor a3=/proc/cpuinfo 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.435:292) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5b24b031c040 a1=0x5b24b031bfd8 a2=0x5b24b031c020 a3=0x5b24b031e130 items=2 ppid=7527 pid=7529 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=grep exe=/usr/bin/grep subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.439:293) : proctitle=bc 
+type=PATH msg=audit(10/19/2026 03:38:45.439:293) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.439:293) : item=0 name=/usr/bin/bc inode=1442262 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.439:293) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.439:293) : argc=1 a0=bc 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.439:293) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5b24b031bfb0 a1=0x5b24b031bf80 a2=0x5b24b031bf90 a3=0x782b489a7ce0 items=2 ppid=7530 pid=7532 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=bc exe=/usr/bin/bc subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.439:294) : proctitle=cut -f1 -d   /proc/loadavg 
+type=PATH msg=audit(10/19/2026 03:38:45.439:294) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.439:294) : item=0 name=/usr/bin/cut inode=1455766 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.439:294) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.439:294) : argc=5 a0=cut a1=-f1 a2=-d a3=  a4=/proc/loadavg 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.439:294) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5b24b031c058 a1=0x5b24b031c008 a2=0x5b24b031c038 a3=0x0 items=2 ppid=7531 pid=7533 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=cut exe=/usr/bin/cut subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.445:295) : proctitle=/bin/date 
+type=PATH msg=audit(10/19/2026 03:38:45.445:295) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.445:295) : item=0 name=/bin/date inode=1455767 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.445:295) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.445:295) : argc=1 a0=/bin/date 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.445:295) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5b24b031bfc8 a1=0x5b24b031bff0 a2=0x5b24b031c000 a3=0x782b48be70b8 items=2 ppid=7534 pid=7535 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=date exe=/usr/bin/date subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:45.448:296) : proctitle=/usr/bin/python3 /usr/bin/landscape-sysinfo 
+type=PATH msg=audit(10/19/2026 03:38:45.448:296) : item=2 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.448:296) : item=1 name=/usr/bin/python3 inode=1441874 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:45.448:296) : item=0 name=/usr/bin/landscape-sysinfo inode=1442354 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:45.448:296) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:45.448:296) : argc=2 a0=/usr/bin/python3 a1=/usr/bin/landscape-sysinfo 
+type=SYSCALL msg=audit(10/19/2026 03:38:45.448:296) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5b24b031c000 a1=0x5b24b031c038 a2=0x5b24b031c048 a3=0x782b48be70b8 items=3 ppid=7534 pid=7536 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=landscape-sysin exe=/usr/bin/python3.12 subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.204:297) : proctitle=/usr/bin/python3 /usr/bin/landscape-sysinfo 
+type=PATH msg=audit(10/19/2026 03:38:46.204:297) : item=0 name=/usr/local/sbin/who nametype=UNKNOWN cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.204:297) : cwd=/ 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.204:297) : arch=x86_64 syscall=execve success=no exit=ENOENT(No such file or directory) a0=0x7f1fae31dda0 a1=0x7f1fad387310 a2=0x7f1fad387490 a3=0x7ffd0a68bf80 items=1 ppid=7536 pid=7537 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=landscape-sysin exe=/usr/bin/python3.12 subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.204:298) : proctitle=/usr/bin/python3 /usr/bin/landscape-sysinfo 
+type=PATH msg=audit(10/19/2026 03:38:46.204:298) : item=0 name=/usr/local/bin/who nametype=UNKNOWN cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.204:298) : cwd=/ 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.204:298) : arch=x86_64 syscall=execve success=no exit=ENOENT(No such file or directory) a0=0x7f1fae31dda0 a1=0x7f1fad387310 a2=0x7f1fad387490 a3=0x7ffd0a68bf80 items=1 ppid=7536 pid=7537 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=landscape-sysin exe=/usr/bin/python3.12 subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.204:299) : proctitle=/usr/bin/python3 /usr/bin/landscape-sysinfo 
+type=PATH msg=audit(10/19/2026 03:38:46.204:299) : item=0 name=/usr/sbin/who nametype=UNKNOWN cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.204:299) : cwd=/ 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.204:299) : arch=x86_64 syscall=execve success=no exit=ENOENT(No such file or directory) a0=0x7f1fae31dda0 a1=0x7f1fad387310 a2=0x7f1fad387490 a3=0x7ffd0a68bf80 items=1 ppid=7536 pid=7537 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=landscape-sysin exe=/usr/bin/python3.12 subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.204:300) : proctitle=/usr/bin/python3 /usr/bin/landscape-sysinfo 
+type=PATH msg=audit(10/19/2026 03:38:46.204:300) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.204:300) : item=0 name=/usr/bin/who inode=1466727 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.204:300) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.204:300) : argc=2 a0=who a1=-q 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.204:300) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x7f1fae31dda0 a1=0x7f1fad387310 a2=0x7f1fad387490 a3=0x7ffd0a68bf80 items=2 ppid=7536 pid=7537 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=who exe=/usr/bin/who subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.306:301) : proctitle=chmod 0644 /var/lib/landscape/landscape-sysinfo.cache 
+type=PATH msg=audit(10/19/2026 03:38:46.306:301) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.306:301) : item=0 name=/usr/bin/chmod inode=1455591 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.306:301) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.306:301) : argc=3 a0=chmod a1=0644 a2=/var/lib/landscape/landscape-sysinfo.cache 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.306:301) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5b24b031c028 a1=0x5b24b031bfc8 a2=0x5b24b031c008 a3=0x8 items=2 ppid=7527 pid=7538 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=chmod exe=/usr/bin/chmod subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.311:302) : proctitle=/bin/sh /etc/update-motd.d/50-motd-news 
+type=PATH msg=audit(10/19/2026 03:38:46.311:302) : item=2 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.311:302) : item=1 name=/bin/sh inode=1442345 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.311:302) : item=0 name=/etc/update-motd.d/50-motd-news inode=525835 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.311:302) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.311:302) : argc=2 a0=/bin/sh a1=/etc/update-motd.d/50-motd-news 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.311:302) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x56dcea18dde0 a1=0x56dcea1892a0 a2=0x7fffda0677a8 a3=0x8 items=3 ppid=7521 pid=7539 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=50-motd-news exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.315:303) : proctitle=/bin/sh /etc/update-motd.d/85-fwupd 
+type=PATH msg=audit(10/19/2026 03:38:46.315:303) : item=2 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.315:303) : item=1 name=/bin/sh inode=1442345 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.315:303) : item=0 name=/etc/update-motd.d/85-fwupd inode=525836 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.315:303) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.315:303) : argc=2 a0=/bin/sh a1=/etc/update-motd.d/85-fwupd 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.315:303) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x56dcea18dde0 a1=0x56dcea1892a0 a2=0x7fffda0677a8 a3=0x8 items=3 ppid=7521 pid=7540 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=85-fwupd exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.318:304) : proctitle=cat /run/motd.d/85-fwupd 
+type=PATH msg=audit(10/19/2026 03:38:46.318:304) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.318:304) : item=0 name=/usr/bin/cat inode=1443561 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.318:304) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.318:304) : argc=2 a0=cat a1=/run/motd.d/85-fwupd 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.318:304) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x55fdc07173b0 a1=0x55fd9a4c7678 a2=0x55fdc0717398 a3=0x8 items=2 ppid=7540 pid=7541 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=cat exe=/usr/bin/cat subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.322:305) : proctitle=/bin/sh /etc/update-motd.d/91-contract-ua-esm-status 
+type=PATH msg=audit(10/19/2026 03:38:46.322:305) : item=2 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.322:305) : item=1 name=/bin/sh inode=1442345 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.322:305) : item=0 name=/etc/update-motd.d/91-contract-ua-esm-status inode=525838 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.322:305) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.322:305) : argc=2 a0=/bin/sh a1=/etc/update-motd.d/91-contract-ua-esm-status 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.322:305) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x56dcea18dde0 a1=0x56dcea1892a0 a2=0x7fffda0677a8 a3=0x8 items=3 ppid=7521 pid=7542 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=91-contract-ua- exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.326:306) : proctitle=/bin/sh /etc/update-motd.d/97-overlayroot 
+type=PATH msg=audit(10/19/2026 03:38:46.326:306) : item=2 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.326:306) : item=1 name=/bin/sh inode=1442345 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.326:306) : item=0 name=/etc/update-motd.d/97-overlayroot inode=525842 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.326:306) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.326:306) : argc=2 a0=/bin/sh a1=/etc/update-motd.d/97-overlayroot 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.326:306) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x56dcea18dde0 a1=0x56dcea1892a0 a2=0x7fffda0677a8 a3=0x8 items=3 ppid=7521 pid=7543 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=97-overlayroot exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.330:307) : proctitle=/bin/sh /usr/bin/egrep overlayroot|/media/root-ro|/media/root-rw /proc/mounts 
+type=PATH msg=audit(10/19/2026 03:38:46.330:307) : item=2 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.330:307) : item=1 name=/bin/sh inode=1442345 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.330:307) : item=0 name=/usr/bin/egrep inode=1442397 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.330:307) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.330:307) : argc=4 a0=/bin/sh a1=/usr/bin/egrep a2=overlayroot|/media/root-ro|/media/root-rw a3=/proc/mounts 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.330:307) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x648244bb1480 a1=0x648244bb1428 a2=0x648244bb1468 a3=0x1b6 items=3 ppid=7544 pid=7545 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=egrep exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.330:308) : proctitle=sort -r 
+type=PATH msg=audit(10/19/2026 03:38:46.330:308) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.330:308) : item=0 name=/usr/bin/sort inode=1466249 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.330:308) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.330:308) : argc=2 a0=sort a1=-r 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.330:308) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x648244bb1408 a1=0x648244bb13d8 a2=0x648244bb13f0 a3=0x7c39971a7ce0 items=2 ppid=7544 pid=7546 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=sort exe=/usr/bin/sort subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.333:309) : proctitle=/bin/sh /usr/bin/egrep overlayroot|/media/root-ro|/media/root-rw /proc/mounts 
+type=PATH msg=audit(10/19/2026 03:38:46.333:309) : item=0 name=/usr/local/sbin/grep nametype=UNKNOWN cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.333:309) : cwd=/ 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.333:309) : arch=x86_64 syscall=execve success=no exit=ENOENT(No such file or directory) a0=0x59ed842d7660 a1=0x59ed842d7620 a2=0x59ed842d7648 a3=0x1 items=1 ppid=7544 pid=7545 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=egrep exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.333:310) : proctitle=/bin/sh /usr/bin/egrep overlayroot|/media/root-ro|/media/root-rw /proc/mounts 
+type=PATH msg=audit(10/19/2026 03:38:46.333:310) : item=0 name=/usr/local/bin/grep nametype=UNKNOWN cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.333:310) : cwd=/ 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.333:310) : arch=x86_64 syscall=execve success=no exit=ENOENT(No such file or directory) a0=0x59ed842d7660 a1=0x59ed842d7620 a2=0x59ed842d7648 a3=0x1 items=1 ppid=7544 pid=7545 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=egrep exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.333:311) : proctitle=/bin/sh /usr/bin/egrep overlayroot|/media/root-ro|/media/root-rw /proc/mounts 
+type=PATH msg=audit(10/19/2026 03:38:46.333:311) : item=0 name=/usr/sbin/grep nametype=UNKNOWN cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.333:311) : cwd=/ 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.333:311) : arch=x86_64 syscall=execve success=no exit=ENOENT(No such file or directory) a0=0x59ed842d7660 a1=0x59ed842d7620 a2=0x59ed842d7648 a3=0x1 items=1 ppid=7544 pid=7545 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=egrep exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.333:312) : proctitle=/bin/sh /usr/bin/egrep overlayroot|/media/root-ro|/media/root-rw /proc/mounts 
+type=PATH msg=audit(10/19/2026 03:38:46.333:312) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.333:312) : item=0 name=/usr/bin/grep inode=1442450 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.333:312) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.333:312) : argc=4 a0=grep a1=-E a2=overlayroot|/media/root-ro|/media/root-rw a3=/proc/mounts 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.333:312) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x59ed842d7660 a1=0x59ed842d7620 a2=0x59ed842d7648 a3=0x1 items=2 ppid=7544 pid=7545 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=grep exe=/usr/bin/grep subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.340:313) : proctitle=/bin/sh /etc/update-motd.d/99-bento 
+type=PATH msg=audit(10/19/2026 03:38:46.340:313) : item=2 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.340:313) : item=1 name=/bin/sh inode=1442345 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.340:313) : item=0 name=/etc/update-motd.d/99-bento inode=525729 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.340:313) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.340:313) : argc=2 a0=/bin/sh a1=/etc/update-motd.d/99-bento 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.340:313) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x56dcea18dde0 a1=0x56dcea1892a0 a2=0x7fffda0677a8 a3=0x8 items=3 ppid=7521 pid=7547 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=99-bento exe=/usr/bin/dash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.342:314) : proctitle=cat 
+type=PATH msg=audit(10/19/2026 03:38:46.342:314) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.342:314) : item=0 name=/usr/bin/cat inode=1443561 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.342:314) : cwd=/ 
+type=EXECVE msg=audit(10/19/2026 03:38:46.342:314) : argc=1 a0=cat 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.342:314) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x56733557d488 a1=0x56731b181670 a2=0x56731b181680 a3=0x1 items=2 ppid=7547 pid=7548 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=505 comm=cat exe=/usr/bin/cat subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.410:318) : proctitle=bash -c bash -l -c 'sudo ausearch -k placement_test -i' 
+type=PATH msg=audit(10/19/2026 03:38:46.410:318) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.410:318) : item=0 name=/bin/bash inode=1442260 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.410:318) : cwd=/home/vagrant 
+type=EXECVE msg=audit(10/19/2026 03:38:46.410:318) : argc=3 a0=bash a1=-c a2=bash -l -c 'sudo ausearch -k placement_test -i' 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.410:318) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5e1ed3ecbdc0 a1=0x7ffc0b038820 a2=0x5e1ed3ed1a80 a3=0x8 items=2 ppid=7549 pid=7550 auid=vagrant uid=vagrant gid=vagrant euid=vagrant suid=vagrant fsuid=vagrant egid=vagrant sgid=vagrant fsgid=vagrant tty=pts0 ses=505 comm=bash exe=/usr/bin/bash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.413:319) : proctitle=bash -c bash -l -c 'sudo ausearch -k placement_test -i' 
+type=PATH msg=audit(10/19/2026 03:38:46.413:319) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.413:319) : item=0 name=/usr/bin/bash inode=1442260 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.413:319) : cwd=/home/vagrant 
+type=EXECVE msg=audit(10/19/2026 03:38:46.413:319) : argc=4 a0=bash a1=-l a2=-c a3=sudo ausearch -k placement_test -i 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.413:319) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x61a55f240370 a1=0x61a55f240410 a2=0x61a55f242000 a3=0x1 items=2 ppid=7549 pid=7550 auid=vagrant uid=vagrant gid=vagrant euid=vagrant suid=vagrant fsuid=vagrant egid=vagrant sgid=vagrant fsgid=vagrant tty=pts0 ses=505 comm=bash exe=/usr/bin/bash subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.420:320) : proctitle=/usr/bin/locale-check C.UTF-8 
+type=PATH msg=audit(10/19/2026 03:38:46.420:320) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.420:320) : item=0 name=/usr/bin/locale-check inode=1442524 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.420:320) : cwd=/home/vagrant 
+type=EXECVE msg=audit(10/19/2026 03:38:46.420:320) : argc=2 a0=/usr/bin/locale-check a1=C.UTF-8 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.420:320) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5e10021a6260 a1=0x5e10021a2440 a2=0x5e10021a5da0 a3=0x8 items=2 ppid=7550 pid=7551 auid=vagrant uid=vagrant gid=vagrant euid=vagrant suid=vagrant fsuid=vagrant egid=vagrant sgid=vagrant fsgid=vagrant tty=pts0 ses=505 comm=locale-check exe=/usr/bin/locale-check subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.428:321) : proctitle=locale 
+type=PATH msg=audit(10/19/2026 03:38:46.428:321) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.428:321) : item=0 name=/usr/bin/locale inode=1457204 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.428:321) : cwd=/home/vagrant 
+type=EXECVE msg=audit(10/19/2026 03:38:46.428:321) : argc=1 a0=locale 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.428:321) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5e10021b1ab0 a1=0x5e10021b4fa0 a2=0x5e10021c16f0 a3=0x8 items=2 ppid=7550 pid=7552 auid=vagrant uid=vagrant gid=vagrant euid=vagrant suid=vagrant fsuid=vagrant egid=vagrant sgid=vagrant fsgid=vagrant tty=pts0 ses=505 comm=locale exe=/usr/bin/locale subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.431:322) : proctitle=bash -c bash -l -c 'sudo ausearch -k placement_test -i' 
+type=PATH msg=audit(10/19/2026 03:38:46.431:322) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.431:322) : item=0 name=/usr/bin/sudo inode=1442869 dev=fc:00 mode=file,suid,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.431:322) : cwd=/home/vagrant 
+type=EXECVE msg=audit(10/19/2026 03:38:46.431:322) : argc=5 a0=sudo a1=ausearch a2=-k a3=placement_test a4=-i 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.431:322) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5e10021a4dc0 a1=0x5e10021a7660 a2=0x5e10021c16f0 a3=0x8 items=2 ppid=7549 pid=7550 auid=vagrant uid=vagrant gid=vagrant euid=root suid=root fsuid=root egid=vagrant sgid=vagrant fsgid=vagrant tty=pts0 ses=505 comm=sudo exe=/usr/bin/sudo subj=unconfined key=placement_test 
+----
+type=PROCTITLE msg=audit(10/19/2026 03:38:46.452:327) : proctitle=ausearch -k placement_test -i 
+type=PATH msg=audit(10/19/2026 03:38:46.452:327) : item=1 name=/lib64/ld-linux-x86-64.so.2 inode=1481003 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=PATH msg=audit(10/19/2026 03:38:46.452:327) : item=0 name=/usr/sbin/ausearch inode=1442594 dev=fc:00 mode=file,755 ouid=root ogid=root rdev=00:00 nametype=NORMAL cap_fp=none cap_fi=none cap_fe=0 cap_fver=0 cap_frootid=0 
+type=CWD msg=audit(10/19/2026 03:38:46.452:327) : cwd=/home/vagrant 
+type=EXECVE msg=audit(10/19/2026 03:38:46.452:327) : argc=4 a0=ausearch a1=-k a2=placement_test a3=-i 
+type=SYSCALL msg=audit(10/19/2026 03:38:46.452:327) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x5e256e2b1e98 a1=0x5e256e2a6a60 a2=0x5e256e2b56b0 a3=0x64 items=2 ppid=7554 pid=7555 auid=vagrant uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=pts1 ses=505 comm=ausearch exe=/usr/sbin/ausearch subj=unconfined key=placement_test 

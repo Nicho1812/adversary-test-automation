@@ -1,0 +1,11 @@
+﻿Ubuntu telemetry verification — 19 October 2026
+
+Target: Ubuntu 24.04.3 LTS
+Network isolation: Verified; no default route.
+Audit service: Active and enabled.
+Audit subsystem: Enabled.
+Process auditing: execve rule saved and active.
+Test event: /usr/bin/id successfully recorded as an EXECVE event.
+Events lost: 0.
+Central log collection: Not yet configured or verified.
+30-second searchable-event target: Not yet verified.
