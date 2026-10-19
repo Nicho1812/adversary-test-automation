@@ -1,4 +1,4 @@
-﻿Ubuntu telemetry verification — 19 October 2026
+Ubuntu telemetry verification — 19 October 2026
 
 Target: Ubuntu 24.04.3 LTS
 Network isolation: Verified; no default route.
@@ -7,5 +7,6 @@ Audit subsystem: Enabled.
 Process auditing: execve rule saved and active.
 Test event: /usr/bin/id successfully recorded as an EXECVE event.
 Events lost: 0.
-Central log collection: Not yet configured or verified.
-30-second searchable-event target: Not yet verified.
+Central log collection: Verified through the Wazuh agent.
+Custom detection: Wazuh rule 100100 successfully detected Ubuntu process-execution events.
+Searchable events: Verified in the Wazuh dashboard.
