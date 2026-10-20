@@ -1,6 +1,6 @@
 # Day 11 – Adversary Test Automation and Threat Modelling
 
-**Date:** 20 October 2026
+**Date:** 20 October 2026  
 **Hours:** 4 hours
 
 ## What I Did
