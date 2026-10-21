@@ -1,0 +1,14 @@
+Day 6 Atomic Red Team Coverage
+Date: 2026-10-21
+
+Technique definitions parsed: 12/12
+Distinct techniques with successful Invoke-AtomicTest executions: 8
+Manual safe equivalents: T1059.004, T1552.001, T1070.004
+Reviewed but not executed: T1547.001
+
+T1005 passed using a disposable test directory.
+The built-in cleanup failed because it targeted the wrong path.
+The generated ZIP was manually removed and verified absent.
+
+T1547.001 was not executed because the available tests modify
+startup persistence or registry settings on the Windows host.
