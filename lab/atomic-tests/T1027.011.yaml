@@ -1,0 +1,47 @@
+﻿attack_technique: T1027.011
+display_name: "Fileless Storage"
+
+atomic_tests:
+- name: Store and verify a temporary Registry value
+  auto_generated_guid: 81e2bc45-0d71-4d9e-a6a4-56e9277b3c10
+  description: |
+    Stores a harmless string in a dedicated temporary HKCU Registry key,
+    verifies it, and removes the key. This is a limited Registry-storage
+    simulation, not a demonstration of malicious fileless payload storage.
+  supported_platforms:
+  - windows
+  input_arguments:
+    test_value:
+      description: Harmless value to store and verify
+      type: string
+      default: SIT306-volatile-memory-test
+  executor:
+    name: powershell
+    elevation_required: false
+    command: |
+      $ErrorActionPreference = 'Stop'
+      $key = 'HKCU:\Software\SIT306-Day7-T1027-011'
+      $valueName = 'TestValue'
+
+      if (Test-Path -LiteralPath $key) {
+        throw "Test Registry key already exists; refusing to modify it."
+      }
+
+      try {
+        New-Item -Path $key -ErrorAction Stop | Out-Null
+        Set-ItemProperty -LiteralPath $key -Name $valueName -Value "#{test_value}" -ErrorAction Stop
+
+        $actual = (Get-ItemProperty -LiteralPath $key -Name $valueName -ErrorAction Stop).$valueName
+        if ($actual -cne "#{test_value}") {
+          throw "Registry value verification failed."
+        }
+
+        Write-Output "PASS: Temporary Registry value verified."
+      }
+      finally {
+        if (Test-Path -LiteralPath $key) {
+          Remove-Item -LiteralPath $key -Recurse -Force -ErrorAction Stop
+        }
+      }
+    cleanup_command: |
+      Write-Output "Cleanup is performed by the test command's finally block."

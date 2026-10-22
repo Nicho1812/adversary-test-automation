@@ -1,0 +1,4 @@
+﻿Date,TechniqueID,TestName,Run1,Run2,Cleanup,ExecutionMethod,Limitation
+2026-10-22,T1001.001,Verify padded test message in memory,PASS,PASS,No persistent files created,Manual PowerShell simulation,Does not test actual command-and-control traffic
+2026-10-22,T1027.015,Compress and verify a dummy text file,PASS,PASS,Temporary directory removed after both runs,Manual PowerShell test,Verifies compression round-trip only
+2026-10-22,T1027.011,Store and verify a temporary Registry value,PASS,PASS,Temporary Registry key removed after both runs,Manual PowerShell test,Limited Registry-storage simulation

@@ -1,0 +1,53 @@
+﻿
+attack_technique: T1027.015
+display_name: "Compression"
+
+atomic_tests:
+- name: Compress and verify a dummy text file
+  auto_generated_guid: 39f2a9c0-7f54-4a2e-beb4-9d88b8e31025
+  description: |
+    Compresses a harmless dummy text file and verifies the restored
+    content. This tests compression and round-trip integrity only;
+    it does not demonstrate malicious payload obfuscation.
+  supported_platforms:
+  - windows
+  input_arguments:
+    test_directory:
+      description: Dedicated temporary directory for this test
+      type: path
+      default: C:\Users\Public\SIT306-Day7-T1027-015
+  executor:
+    name: powershell
+    elevation_required: false
+    command: |
+      $ErrorActionPreference = 'Stop'
+      $dir = "#{test_directory}"
+      $source = Join-Path $dir "dummy.txt"
+      $archive = Join-Path $dir "dummy.zip"
+      $restoreDir = Join-Path $dir "restored"
+
+      if (Test-Path -LiteralPath $dir) {
+        throw "Test directory already exists; refusing to overwrite existing data."
+      }
+
+      New-Item -ItemType Directory -Path $dir | Out-Null
+      try {
+        $expected = "SIT306 harmless compression test"
+        Set-Content -LiteralPath $source -Value $expected -NoNewline
+        Compress-Archive -LiteralPath $source -DestinationPath $archive
+        Expand-Archive -LiteralPath $archive -DestinationPath $restoreDir
+
+        $actual = Get-Content -LiteralPath (Join-Path $restoreDir "dummy.txt") -Raw
+        if ($actual -ne $expected) {
+          throw "Restored content did not match the original."
+        }
+
+        Write-Output "PASS: Compression round-trip verified."
+      }
+      finally {
+        if (Test-Path -LiteralPath $dir) {
+          Remove-Item -LiteralPath $dir -Recurse -Force
+        }
+      }
+    cleanup_command: |
+      Write-Output "Cleanup handled by the command's finally block."

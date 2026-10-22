@@ -1,0 +1,41 @@
+﻿
+attack_technique: T1001.001
+display_name: "Junk Data"
+
+atomic_tests:
+- name: Verify padded test message in memory
+  auto_generated_guid: 7d28eaf1-92b5-4f40-8bc8-3f0a11c50d21
+  description: |
+    Builds and verifies a local test message with configurable padding.
+    This is a safe data-formatting simulation only. It does not send
+    network traffic or demonstrate actual command-and-control behaviour.
+  supported_platforms:
+  - windows
+  input_arguments:
+    padding_length:
+      description: Number of harmless padding characters
+      type: integer
+      default: 32
+  executor:
+    name: powershell
+    elevation_required: false
+    command: |
+      $ErrorActionPreference = 'Stop'
+      $length = [int]"#{padding_length}"
+
+      if ($length -lt 1 -or $length -gt 4096) {
+        throw "padding_length must be between 1 and 4096."
+      }
+
+      $message = "SIT306-TEST"
+      $padding = 'X' * $length
+      $result = "$message|$padding"
+      $parts = $result -split '\|', 2
+
+      if ($parts.Count -ne 2 -or $parts[0] -ne $message -or $parts[1].Length -ne $length) {
+        throw "Message or padding verification failed."
+      }
+
+      Write-Output "PASS: Message verified; padding length=$length."
+    cleanup_command: |
+      Write-Output "PASS: No persistent artefacts were created."
