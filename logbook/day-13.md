@@ -4,10 +4,11 @@
 **Hours:** 5 hours
 
 ## What I Did
-- Completed the Atomic Red Team testing documentation from the previous day.
+- Met with my supervisor to discuss placement progress and current tasks.
+- Completed documentation for the Atomic Red Team testing activities from the previous day.
 - Identified three techniques with missing public test definitions.
 - Created three parameterised YAML test prototypes.
-- Ran each test twice and checked cleanup.
+- Ran each test twice and verified cleanup.
 - Validated YAML syntax and test parameters.
 - Recorded results and pushed the test files and evidence to GitHub.
 
