@@ -1,0 +1,21 @@
+﻿title: Windows Account Discovery Using Net User
+id: 6d0e8c54-79a1-4a15-8f53-6c9e92a41d07
+status: experimental
+description: Detects Windows process creation events where net.exe or net1.exe runs the account enumeration command net user.
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_image:
+    Image|endswith:
+      - '\net.exe'
+      - '\net1.exe'
+  selection_command:
+    CommandLine|contains: 'net user'
+  condition: selection_image and selection_command
+falsepositives:
+  - Legitimate administrative account enumeration
+level: medium
+tags:
+  - attack.discovery
+  - attack.t1087

@@ -35,3 +35,14 @@ File: `lab/detections/sigma/ubuntu_process_execution.yml`
   `data.audit.key:placement_test AND data.audit.type:SYSCALL AND data.audit.success:yes`
 - In Wazuh Threat Hunting (2026-10-19 to 2026-10-27), the query returned 39,846 hits. An inspected `ubuntu-lab` event contained all three matching field values and matched Wazuh rule `100100` (Ubuntu process execution detected by placement_test audit rule).
 - This confirms the query fields match observed Wazuh data, but does not prove technique-specific detection. A processing pipeline and full backend compatibility remain unverified.
+
+## Windows Account Discovery Sigma Validation
+
+- Rule: `lab/detections/sigma/windows_account_discovery.yml`
+- Sigma CLI syntax validation passed on 2026-10-27 with 0 errors, 0 condition errors, and 0 issues.
+- OpenSearch Lucene conversion produced:
+  `(Image:(*\\net.exe OR *\\net1.exe)) AND CommandLine:*net\ user*`
+- Wazuh Threat Hunting query `data.win.eventdata.commandLine:"net user"` returned 32 hits for the selected period (2026-10-19 to 2026-10-27).
+- An inspected event contained `data.win.eventdata.commandLine: net user` and `data.win.eventdata.image: C:\Windows\SysWOW64\net.exe`. It was a Sysmon Event ID 1 and matched existing Wazuh rule 92031, mapped to T1087 Account Discovery.
+- This confirms relevant telemetry and an existing Wazuh alert. It does not establish that the new Sigma rule itself generated an alert or that its generated OpenSearch query works without field mapping.
+- Limitation: the generated query uses `Image` and `CommandLine`, while the observed Wazuh fields are `data.win.eventdata.image` and `data.win.eventdata.commandLine`. Backend field mapping and live validation of the Sigma rule remain outstanding.
