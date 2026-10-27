@@ -8,7 +8,7 @@ File: `lab/detections/sigma/ubuntu_process_execution.yml`
 
 - Basic structural checks passed for the title, ID, experimental status, log source, detection section, selection, condition, false positives, and informational level.
 - The rule remains experimental.
-- Full Sigma parser validation has not been performed.
+- Sigma CLI parser validation completed on 2026-10-27 with 0 errors, 0 condition errors, and 0 validation issues.
 - Live backend testing has not established that the rule generates an alert.
 - The rule uses Wazuh-normalised field names; compatibility with a Sigma backend remains unverified.
 - General process-execution telemetry must not be treated as proof of detection of a specific ATT&CK technique.
@@ -23,6 +23,7 @@ File: `lab/detections/sigma/ubuntu_process_execution.yml`
 
 ## Limitations and next actions
 
-1. Validate the Sigma rule with a compatible Sigma parser when available.
-2. Test the rule against the intended backend before claiming operational detection.
-3. Review existing evidence for remaining techniques and update coverage verdicts only when supported.
+1. Sigma CLI syntax validation passed on 2026-10-27 with 0 errors, 0 condition errors, and 0 validation issues.
+2. OpenSearch backend conversion was attempted. The backend plugin installed successfully, but conversion required a processing pipeline and no predefined pipeline was available for the selected target. Custom field mapping and live Wazuh detection testing remain outstanding.
+3. Test the rule against the intended backend before claiming operational detection.
+4. Review existing evidence for remaining techniques and update coverage verdicts only when supported.
