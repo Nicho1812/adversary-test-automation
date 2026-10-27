@@ -1,117 +1,38 @@
-# Detection-as-Code Validation Notes
+ï»¿# Detection-as-Code Validation Notes
 
 Date: 2026-10-27
 
-## Sigma candidate
+## Sigma Rules
 
-File: `lab/detections/sigma/ubuntu_process_execution.yml`
+- `sigma/ubuntu_process_execution.yml`
+- `sigma/windows_account_discovery.yml`
+- Both rules passed Sigma CLI syntax validation with no reported issues.
+- Both remain candidates; end-to-end detection by the new Sigma rules is not confirmed.
 
-- Basic structural checks passed for the title, ID, experimental status, log source, detection section, selection, condition, false positives, and informational level.
-- The rule remains experimental.
-- Sigma CLI parser validation completed on 2026-10-27 with 0 errors, 0 condition errors, and 0 validation issues.
-- Live backend testing has not established that the rule generates an alert.
-- The rule uses Wazuh-normalised field names; compatibility with a Sigma backend remains unverified.
-- General process-execution telemetry must not be treated as proof of detection of a specific ATT&CK technique.
+## Ubuntu Validation
 
-## Coverage evidence
+- Query: `data.audit.key:placement_test AND data.audit.type:SYSCALL AND data.audit.success:yes`
+- Wazuh search returned 39,846 events for the reviewed period.
+- An inspected event matched the fields and existing Wazuh rule 100100.
+- This confirms general process telemetry, not technique-specific detection by the new Sigma rule.
 
-- T1087: Wazuh rule 92031 and Sysmon Event ID 1 evidence show `net user`; the alert maps to the parent technique T1087 Account Discovery.
-- T1082: execution was reported, but a technique-specific Wazuh detection has not been verified.
-- T1033: no matching indicator was found in the reviewed Windows Sysmon alert file; other telemetry sources have not been fully assessed.
-- Other techniques remain pending until relevant detection evidence is reviewed.
-- T1547.001 remains not tested because the available test was skipped due to its startup-persistence or registry modifications.
+## Windows Validation
 
-## Limitations and next actions
+- Wazuh query: `data.win.eventdata.commandLine: "net user"`
+- Search returned 32 events for the reviewed period.
+- An inspected Sysmon Event ID 1 event matched `net user`.
+- Existing Wazuh rule 92031 generated an alert mapped to T1087 Account Discovery.
+- The generated Lucene query used different field names from observed Wazuh fields and was not successfully validated end to end.
 
-1. Sigma CLI syntax validation passed on 2026-10-27 with 0 errors, 0 condition errors, and 0 validation issues.
-2. OpenSearch backend conversion was attempted. The backend plugin installed successfully, but conversion required a processing pipeline and no predefined pipeline was available for the selected target. Custom field mapping and live Wazuh detection testing remain outstanding.
-3. Test the rule against the intended backend before claiming operational detection.
-4. Review existing evidence for remaining techniques and update coverage verdicts only when supported.
+## Custom Wazuh Rule
 
-## OpenSearch query validation
+- Custom rule 100101 was added as a child of rule 92031.
+- Manager configuration validation passed.
+- An earlier representative `wazuh-logtest` matched rule 100101, but a live alert from that rule was not confirmed.
+- Existing Ubuntu rule 100100 was preserved.
 
-- Sigma CLI validation passed on 2026-10-27: 0 errors, 0 condition errors, 0 issues.
-- Converted the rule to this OpenSearch Lucene query using `--without-pipeline`:
-  `data.audit.key:placement_test AND data.audit.type:SYSCALL AND data.audit.success:yes`
-- In Wazuh Threat Hunting (2026-10-19 to 2026-10-27), the query returned 39,846 hits. An inspected `ubuntu-lab` event contained all three matching field values and matched Wazuh rule `100100` (Ubuntu process execution detected by placement_test audit rule).
-- This confirms the query fields match observed Wazuh data, but does not prove technique-specific detection. A processing pipeline and full backend compatibility remain unverified.
+## Limitations
 
-## Windows Account Discovery Sigma Validation
-
-- Rule: `lab/detections/sigma/windows_account_discovery.yml`
-- Sigma CLI syntax validation passed on 2026-10-27 with 0 errors, 0 condition errors, and 0 issues.
-- OpenSearch Lucene conversion produced:
-  `(Image:(*\\net.exe OR *\\net1.exe)) AND CommandLine:*net\ user*`
-- Wazuh Threat Hunting query `data.win.eventdata.commandLine:"net user"` returned 32 hits for the selected period (2026-10-19 to 2026-10-27).
-- An inspected event contained `data.win.eventdata.commandLine: net user` and `data.win.eventdata.image: C:\Windows\SysWOW64\net.exe`. It was a Sysmon Event ID 1 and matched existing Wazuh rule 92031, mapped to T1087 Account Discovery.
-- This confirms relevant telemetry and an existing Wazuh alert. It does not establish that the new Sigma rule itself generated an alert or that its generated OpenSearch query works without field mapping.
-- Limitation: the generated query uses `Image` and `CommandLine`, while the observed Wazuh fields are `data.win.eventdata.image` and `data.win.eventdata.commandLine`. Backend field mapping and live validation of the Sigma rule remain outstanding.
-
-## Windows Sigma Field-Mapping Follow-up - 2026-10-27
-
-- Updated the Windows Sigma candidate to use observed Wazuh field paths: `data.win.eventdata.image` and `data.win.eventdata.commandLine`.
-- Sigma CLI syntax validation passed after the update with 0 errors, 0 condition errors, and 0 issues.
-- Wazuh DQL query `data.win.eventdata.commandLine: "net user"` returned 32 hits.
-- An inspected event confirmed the command line `net user`, image `C:\Windows\SysWOW64\net.exe`, Sysmon Event ID 1, and existing Wazuh rule 92031 mapped to T1087 Account Discovery.
-- Attempts to query `data.win.eventdata.image` separately returned no results. The combined Lucene query could not be tested successfully in Wazuh DQL because of a syntax error.
-- Outcome: relevant telemetry is confirmed, but end-to-end execution of the new Sigma rule is not verified. Do not claim that the candidate Sigma rule itself generated the existing Wazuh alert.
-
-## Final Task 9 Status - 2026-10-27
-
-### Detection coverage
-
-- T1087: Confirmed technique-specific evidence from existing Wazuh rule 92031 and Sysmon process-creation telemetry.
-- T1059.003: A matching Wazuh rule 92852 alert was observed, but attribution to the recorded test is not fully confirmed.
-- T1082, T1033, T1016, T1057, T1049, T1005, T1059.004, T1552.001 and T1070.004: Detection outcome remains unverified based on the evidence reviewed.
-- T1547.001: Not tested because the test was skipped.
-
-### Completion limitations
-
-- Both Sigma candidate rules passed syntax validation.
-- Relevant Ubuntu and Windows telemetry was observed, but this does not establish that the new Sigma candidates generated alerts.
-- The Ubuntu query matched 39,846 events; the Windows `net user` search returned 32 events for the reviewed period. These are search-result counts, not detection-coverage scores.
-- End-to-end Sigma execution, backend field mapping and successful validation of the generated Windows Lucene query remain outstanding.
-- Do not interpret unverified techniques as confirmed misses or count existing Wazuh alerts as alerts generated by the new Sigma candidates.
-
-## Backend Query Reference for Task 9
-
-### Ubuntu process execution
-
-Backend: OpenSearch Lucene
-
-Query:
-`data.audit.key:placement_test AND data.audit.type:SYSCALL AND data.audit.success:yes`
-
-Observed result: 39,846 events for the reviewed period. An inspected event matched the three fields and existing Wazuh rule 100100.
-
-Status: Query execution verified against observed data. This is general process telemetry, not proof that the new Sigma rule generated a technique-specific alert.
-
-### Windows account discovery
-
-Backend: Wazuh Threat Hunting
-
-Query tested:
-`data.win.eventdata.commandLine: "net user"`
-
-Observed result: 32 events for the reviewed period. An inspected Sysmon Event ID 1 matched existing Wazuh rule 92031, mapped to T1087 Account Discovery.
-
-Converted OpenSearch Lucene candidate:
-`(Image:(*\\net.exe OR *\\net1.exe)) AND CommandLine:*net\ user*`
-
-Status: The Wazuh command-line search returned relevant events. The combined Lucene candidate was not successfully validated in Wazuh DQL, and its generated field names differ from the observed Wazuh field paths. End-to-end execution of the new Sigma rule remains unverified.
-
-## Final Wazuh Deployment Test — 27 October 2026
-
-- Wazuh manager: running in Docker, version 4.14.9.
-- Sigma syntax validation: both candidate rules passed syntax validation.
-- Ubuntu query: matched existing placement-test audit telemetry.
-- Windows query: the command-line search returned 32 results. An inspected event matched both fields, but the combined query was not successfully validated in Wazuh DQL.
-- Native Wazuh rule 100101: added to `local_rules.xml` as a child of existing rule 92031. The manager configuration test passed.
-- Windows live test: running `net user` generated Sysmon process-creation telemetry. Existing Wazuh rule 92031 fired and mapped the activity to T1087 Account Discovery.
-- Custom-rule verification: rule 100101 matched a representative event in an earlier `wazuh-logtest` run, but a live alert from rule 100101 was not confirmed. A subsequent interactive test did not produce Phase 3 output.
-- Ubuntu rule 100100: existing rule preserved; no new alert from this rule was confirmed during this deployment attempt.
-
-### Conclusion
-
-The query validation and existing Windows detection are evidenced by actual telemetry. The custom Windows rule is configured and passes syntax validation, but its live alert generation remains unverified. Do not report rule 100101 as successfully verified end to end until a live alert with that rule ID is observed.
-
+- Existing Wazuh alerts are not proof that the new Sigma rules generated alerts.
+- Backend field mapping and end-to-end Sigma validation remain outstanding.
+- Most technique-specific outcomes remain unverified; T1547.001 was not tested.
