@@ -1,15 +1,15 @@
-﻿# Detection Coverage Results
+# Detection Coverage Results
 
 Date: 2026-10-27
 
 | Technique | Execution status | Telemetry evidence | Detection verdict | Reason |
 |---|---|---|---|---|
 | T1082 | Executed successfully | T1082 execution logged; matching technique-specific Wazuh event not yet verified | Pending | Generic Ubuntu process-execution events do not prove T1082 was detected |
-| T1033 | Executed successfully | Not yet reviewed | Pending | Technique-specific telemetry and detection need verification |
+| T1033 | Executed successfully | No matching indicator found in the reviewed Windows Sysmon alert file | Pending | Detection remains unverified; other telemetry sources have not been fully assessed |
 | T1016 | Executed successfully | Not yet reviewed | Pending | Technique-specific telemetry and detection need verification |
 | T1057 | Executed successfully | Not yet reviewed | Pending | Technique-specific telemetry and detection need verification |
 | T1049 | Executed successfully | Not yet reviewed | Pending | Technique-specific telemetry and detection need verification |
-| T1087.001 | Executed successfully | Windows Sysmon Event ID 1; Wazuh rule 92031 detected `net user` | Detected | Evidence maps to T1087 Account Discovery |
+| T1087 | Executed successfully | Windows Sysmon Event ID 1; Wazuh rule 92031 detected `net user` | Detected | Wazuh explicitly maps the alert to T1087 Account Discovery; subtechnique not established |
 | T1059.003 | Executed successfully | Not yet reviewed | Pending | Technique-specific telemetry and detection need verification |
 | T1005 | Executed successfully | Not yet reviewed | Pending | Technique-specific telemetry and detection need verification |
 | T1059.004 | Manual equivalent | Not yet reviewed | Pending | Manual equivalent is not an Invoke-AtomicTest execution |
