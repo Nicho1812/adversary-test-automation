@@ -27,3 +27,11 @@ File: `lab/detections/sigma/ubuntu_process_execution.yml`
 2. OpenSearch backend conversion was attempted. The backend plugin installed successfully, but conversion required a processing pipeline and no predefined pipeline was available for the selected target. Custom field mapping and live Wazuh detection testing remain outstanding.
 3. Test the rule against the intended backend before claiming operational detection.
 4. Review existing evidence for remaining techniques and update coverage verdicts only when supported.
+
+## OpenSearch query validation
+
+- Sigma CLI validation passed on 2026-10-27: 0 errors, 0 condition errors, 0 issues.
+- Converted the rule to this OpenSearch Lucene query using `--without-pipeline`:
+  `data.audit.key:placement_test AND data.audit.type:SYSCALL AND data.audit.success:yes`
+- In Wazuh Threat Hunting (2026-10-19 to 2026-10-27), the query returned 39,846 hits. An inspected `ubuntu-lab` event contained all three matching field values and matched Wazuh rule `100100` (Ubuntu process execution detected by placement_test audit rule).
+- This confirms the query fields match observed Wazuh data, but does not prove technique-specific detection. A processing pipeline and full backend compatibility remain unverified.
