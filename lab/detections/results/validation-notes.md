@@ -46,3 +46,12 @@ File: `lab/detections/sigma/ubuntu_process_execution.yml`
 - An inspected event contained `data.win.eventdata.commandLine: net user` and `data.win.eventdata.image: C:\Windows\SysWOW64\net.exe`. It was a Sysmon Event ID 1 and matched existing Wazuh rule 92031, mapped to T1087 Account Discovery.
 - This confirms relevant telemetry and an existing Wazuh alert. It does not establish that the new Sigma rule itself generated an alert or that its generated OpenSearch query works without field mapping.
 - Limitation: the generated query uses `Image` and `CommandLine`, while the observed Wazuh fields are `data.win.eventdata.image` and `data.win.eventdata.commandLine`. Backend field mapping and live validation of the Sigma rule remain outstanding.
+
+## Windows Sigma Field-Mapping Follow-up — 2026-10-27
+
+- Updated the Windows Sigma candidate to use observed Wazuh field paths: `data.win.eventdata.image` and `data.win.eventdata.commandLine`.
+- Sigma CLI syntax validation passed after the update with 0 errors, 0 condition errors, and 0 issues.
+- Wazuh DQL query `data.win.eventdata.commandLine: "net user"` returned 32 hits.
+- An inspected event confirmed the command line `net user`, image `C:\Windows\SysWOW64\net.exe`, Sysmon Event ID 1, and existing Wazuh rule 92031 mapped to T1087 Account Discovery.
+- Attempts to query `data.win.eventdata.image` separately returned no results. The combined Lucene query could not be tested successfully in Wazuh DQL because of a syntax error.
+- Outcome: relevant telemetry is confirmed, but end-to-end execution of the new Sigma rule is not verified. Do not claim that the candidate Sigma rule itself generated the existing Wazuh alert.
