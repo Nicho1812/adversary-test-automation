@@ -105,7 +105,7 @@ Status: The Wazuh command-line search returned relevant events. The combined Luc
 - Wazuh manager: running in Docker, version 4.14.9.
 - Sigma syntax validation: both candidate rules passed syntax validation.
 - Ubuntu query: matched existing placement-test audit telemetry.
-- Windows query: the combined query returned 32 results, and an inspected event matched both the command-line and image conditions.
+- Windows query: the command-line search returned 32 results. An inspected event matched both fields, but the combined query was not successfully validated in Wazuh DQL.
 - Native Wazuh rule 100101: added to `local_rules.xml` as a child of existing rule 92031. The manager configuration test passed.
 - Windows live test: running `net user` generated Sysmon process-creation telemetry. Existing Wazuh rule 92031 fired and mapped the activity to T1087 Account Discovery.
 - Custom-rule verification: rule 100101 matched a representative event in an earlier `wazuh-logtest` run, but a live alert from rule 100101 was not confirmed. A subsequent interactive test did not produce Phase 3 output.
@@ -114,3 +114,4 @@ Status: The Wazuh command-line search returned relevant events. The combined Luc
 ### Conclusion
 
 The query validation and existing Windows detection are evidenced by actual telemetry. The custom Windows rule is configured and passes syntax validation, but its live alert generation remains unverified. Do not report rule 100101 as successfully verified end to end until a live alert with that rule ID is observed.
+

@@ -27,3 +27,11 @@ Date: 2026-10-27
 ## Summary
 
 One detection is directly confirmed for T1087. A matching T1059.003 alert was also observed (Wazuh rule 92852), although attribution to the recorded test is not fully confirmed. The three Gate 1 manual tests (T1082, T1016 and T1033) confirmed process telemetry collection, but not technique-specific detection. Other verdicts remain unverified where the available evidence is insufficient. T1547.001 was not tested.
+
+## Detection score
+
+- Confirmed: 1/12 techniques (T1087) — 8.3%.
+- T1059.003 had a matching alert, but test attribution is uncertain.
+- 10 techniques remain unverified; T1547.001 was not tested.
+- This is a confirmed-detection rate, not a miss rate.
+
