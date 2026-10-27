@@ -1,16 +1,16 @@
-﻿title: Ubuntu Process Execution Audited by Linux Audit
+﻿title: Ubuntu Process Execution with Placement Audit Key
 id: 8f78d0c1-7a2b-4e9f-9f25-2d6a2d3f8101
 status: experimental
-description: Detects successful Linux process execution events collected through auditd.
+description: Detects successful Linux process execution events tagged with the placement_test audit key.
 logsource:
   product: linux
   service: auditd
 detection:
   selection:
+    data.audit.key: placement_test
     data.audit.type: SYSCALL
-    data.audit.syscall: '59'
     data.audit.success: 'yes'
   condition: selection
 falsepositives:
-  - Legitimate system and user process execution
+  - Legitimate process execution recorded by the placement_test audit rule
 level: informational
