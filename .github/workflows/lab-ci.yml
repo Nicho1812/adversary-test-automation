@@ -1,4 +1,5 @@
-﻿name: Lab CI
+﻿
+name: Lab CI
 
 on:
   push:
@@ -22,31 +23,23 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Verify lab VM is accessible
-        shell: powershell
+        shell: cmd
         run: |
-          if (-not (Test-Path "$env:LAB_DIR\Vagrantfile")) {
-            throw "Lab Vagrantfile not found at $env:LAB_DIR"
-          }
-          Push-Location $env:LAB_DIR
-          try {
-            vagrant status
-            if ($LASTEXITCODE -ne 0) { throw "Vagrant status failed" }
-          }
-          finally {
-            Pop-Location
-          }
+          cd /d "%LAB_DIR%"
+          vagrant status
+          if errorlevel 1 exit /b 1
 
       - name: Execute Ubuntu discovery and generate evidence
-        shell: powershell
+        shell: cmd
         run: |
-          python scripts/run_lab_operation.py
-          if ($LASTEXITCODE -ne 0) { throw "Lab operation failed" }
+          python scripts\run_lab_operation.py
+          if errorlevel 1 exit /b 1
 
       - name: Validate evidence
-        shell: powershell
+        shell: cmd
         run: |
           python -m pytest -q tests
-          if ($LASTEXITCODE -ne 0) { throw "Artifact tests failed" }
+          if errorlevel 1 exit /b 1
 
       - name: Upload execution evidence
         if: always()
