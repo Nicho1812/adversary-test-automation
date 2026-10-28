@@ -1,0 +1,62 @@
+﻿name: Lab CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lab-test:
+    runs-on: [self-hosted, Windows, X64]
+    timeout-minutes: 10
+
+    env:
+      LAB_DIR: 'C:\adversary-test-automation\lab'
+      PYTHONUTF8: '1'
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify lab VM is accessible
+        shell: powershell
+        run: |
+          if (-not (Test-Path "$env:LAB_DIR\Vagrantfile")) {
+            throw "Lab Vagrantfile not found at $env:LAB_DIR"
+          }
+          Push-Location $env:LAB_DIR
+          try {
+            vagrant status
+            if ($LASTEXITCODE -ne 0) { throw "Vagrant status failed" }
+          }
+          finally {
+            Pop-Location
+          }
+
+      - name: Execute Ubuntu discovery and generate evidence
+        shell: powershell
+        run: |
+          python scripts/run_lab_operation.py
+          if ($LASTEXITCODE -ne 0) { throw "Lab operation failed" }
+
+      - name: Validate evidence
+        shell: powershell
+        run: |
+          python -m pytest -q tests
+          if ($LASTEXITCODE -ne 0) { throw "Artifact tests failed" }
+
+      - name: Upload execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab-ci-evidence
+          path: artifacts/
+          if-no-files-found: warn
