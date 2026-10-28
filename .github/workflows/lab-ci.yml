@@ -1,5 +1,4 @@
-﻿
-name: Lab CI
+﻿name: Lab CI
 
 on:
   push:
@@ -15,7 +14,7 @@ jobs:
     timeout-minutes: 10
 
     env:
-      LAB_DIR: 'C:\adversary-test-automation\lab'
+      LAB_DIR: '${{ github.workspace }}\lab'
       PYTHONUTF8: '1'
 
     steps:
@@ -26,9 +25,10 @@ jobs:
         shell: cmd
         run: |
           cd /d "%LAB_DIR%"
+          vagrant up
+          if errorlevel 1 exit /b 1
           vagrant status
           if errorlevel 1 exit /b 1
-
       - name: Execute Ubuntu discovery and generate evidence
         shell: cmd
         run: |

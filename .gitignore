@@ -1,2 +1,4 @@
 .vagrant/
 **/.vagrant/
+artifacts/
+tests/__pycache__/
