@@ -1,4 +1,4 @@
-name: Lab CI
+﻿name: Lab CI
 
 on:
   push:
@@ -21,13 +21,26 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Verify existing lab VM and SSH
+      - name: Start lab VM and wait for SSH
         shell: cmd
         run: |
           cd /d "%LAB_DIR%"
-          vagrant status
-          vagrant ssh -c "echo SSH_OK"
+          vagrant up
           if errorlevel 1 exit /b 1
+
+          for /L %%i in (1,1,24) do (
+            vagrant ssh -c "echo SSH_OK" >nul 2>&1
+            if not errorlevel 1 goto ssh_ready
+            timeout /t 5 /nobreak >nul
+          )
+
+          echo ERROR: SSH did not become ready after 2 minutes.
+          vagrant status
+          exit /b 1
+
+          :ssh_ready
+          echo SSH connection confirmed.
+
       - name: Execute Ubuntu discovery and generate evidence
         shell: cmd
         run: |
