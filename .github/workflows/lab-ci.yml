@@ -1,4 +1,5 @@
-﻿name: Lab CI
+﻿
+name: Lab CI
 
 on:
   push:
@@ -25,10 +26,14 @@ jobs:
         shell: cmd
         run: |
           cd /d "%LAB_DIR%"
-          vagrant up
+          vagrant status | findstr /C:"running (virtualbox)"
+          if errorlevel 1 (
+            vagrant up
+            if errorlevel 1 exit /b 1
+          )
+          vagrant ssh -c "echo SSH_OK"
           if errorlevel 1 exit /b 1
-          vagrant status
-          if errorlevel 1 exit /b 1
+
       - name: Execute Ubuntu discovery and generate evidence
         shell: cmd
         run: |
